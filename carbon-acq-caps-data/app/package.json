@@ -1,0 +1,42 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acq-caps-data",
+  "version": "1.0.0",
+  "description": "Projeto responsável por retornar os dados das oficinas",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local || set NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local || set NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local || set NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local || set NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Larissa Ionafa",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "axios": "^1.18.1",
+    "https": "^1.0.0",
+    "pino": "^10.3.1"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "chokidar": {
+      "braces": "^3.0.3"
+    },
+    "ajv": {
+      "fast-uri": "^3.1.2"
+    },
+    "test-exclude": {
+      "minimatch": {
+        ".": "^3.1.5",
+        "brace-expansion": "^1.1.13"
+      }
+    }
+  }
+}

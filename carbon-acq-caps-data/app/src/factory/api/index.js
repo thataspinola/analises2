@@ -1,0 +1,1 @@
+exports.assistencia = require('./assistencia')

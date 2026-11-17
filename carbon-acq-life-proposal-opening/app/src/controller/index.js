@@ -1,0 +1,1 @@
+exports.proposalController = require('./proposalController')

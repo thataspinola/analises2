@@ -1,0 +1,1 @@
+exports.capsEnderecos = require('./capsenderecos')

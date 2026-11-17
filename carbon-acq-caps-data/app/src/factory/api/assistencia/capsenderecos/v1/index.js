@@ -1,0 +1,1 @@
+exports.infoCapsPayloadResponse = require('./infoCapsPayloadResponseFactory')

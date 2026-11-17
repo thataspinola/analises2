@@ -1,0 +1,7 @@
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-stage"
+key = "carbon/acquisition/life/proposal/terraform.tfstate"
+region = "ca-central-1"

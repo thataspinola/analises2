@@ -1,0 +1,26 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-life-proposal-opening",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local || set NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local || set NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local || set NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local || set NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Carbon",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "dotenv": "^16.3.1",
+    "pino": "^10.3.1",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  }
+}

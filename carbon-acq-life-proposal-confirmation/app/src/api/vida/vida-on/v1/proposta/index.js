@@ -1,0 +1,1 @@
+exports.confirmation = require('./confirmationApi')

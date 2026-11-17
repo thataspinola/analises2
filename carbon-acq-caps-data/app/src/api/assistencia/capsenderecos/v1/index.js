@@ -1,0 +1,1 @@
+exports.infoCaps = require('./infoCapsApi')

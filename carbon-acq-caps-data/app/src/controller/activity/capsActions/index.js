@@ -1,0 +1,1 @@
+exports.getCapsInfo = require('./getCapsInfoActivity')
