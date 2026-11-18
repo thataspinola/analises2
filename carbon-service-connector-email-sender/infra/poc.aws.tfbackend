@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------
+# BACKEND CONFIG
+# -----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/service-connector/email-sender/terraform.tfstate"
+region = "ca-central-1"

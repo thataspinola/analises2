@@ -1,0 +1,1 @@
+exports.whatsappPortoBotTrigger = require('./whatsappPortoBotTriggerPayloadFactory')

@@ -1,0 +1,1 @@
+exports.checkInspectionRequest = require('./checkInspectionRequestController')

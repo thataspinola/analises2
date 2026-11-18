@@ -1,0 +1,1 @@
+exports.goodCardApi = require('./goodCardApi')

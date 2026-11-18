@@ -1,0 +1,1 @@
+exports.emailSenderQueue = require('./emailSenderQueueService')

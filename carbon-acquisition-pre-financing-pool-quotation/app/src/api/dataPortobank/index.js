@@ -1,0 +1,1 @@
+exports.consorcio = require('./cotaConsorcioIa')

@@ -1,0 +1,1 @@
+exports.getAppointmentService = require('./getAppointmentServiceActivity')

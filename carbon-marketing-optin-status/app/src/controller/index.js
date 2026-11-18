@@ -1,0 +1,1 @@
+exports.consents = require('./consentsController')

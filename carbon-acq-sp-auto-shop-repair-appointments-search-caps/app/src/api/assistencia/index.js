@@ -1,0 +1,1 @@
+exports.capsenderecos = require('./capsenderecos')

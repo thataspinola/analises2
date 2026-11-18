@@ -1,0 +1,7 @@
+# ------------------------------------------------------------
+# BACKEND CONFIG
+# ------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/acquisition/service-provision/service-order-availability/terraform.tfstate"
+region = "ca-central-1"

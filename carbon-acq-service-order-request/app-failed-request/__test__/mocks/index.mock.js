@@ -1,0 +1,13 @@
+const loggerMocks = require('../../../app-common/nodejs/carbon-acq-service-order-request-common/__test__/mocks/logger/logger.mock')
+exports.CONTROLLER_FAILEDREQUEST = require('./src/controller/failedRequestController.mock')
+exports.API_HUBVENDASCARBON_PAYMENT_SERVICE_PROVISION_CHECKOUT = require('./src/api/hub-vendas-carbon/pagamento/prestacao-servico/index.mock')
+exports.API_SENDGRID_V3_MAIL = require('./src/api/sendgridApi/v3/mail/index.mock')
+exports.FACTORY_API_HUBVENDASCARBON_PAYMENT_SERVICE_PROVISION_CHECKOUT = require('./src/factory/api/hub-vendas-carbon/pagamento/prestacao-servico/paymentCheckoutEndpointPayloadFactory.mock')
+exports.FACTORY_API_SENDGRID_V3_MAIL_POSTSENDPOINT = require('./src/factory/api/sendgridApi/v3/mail/postSendEndpointFactory.mock')
+exports.FACTORY_CONTROLLER_PROCESSSQSMESSAGE_PROCESSEDDATAREPORT = require('./src/factory/controller/processSqsMessage/processedDataReportFactory.mock')
+exports.FACTORY_CONTROLLER_PROCESSSQSMESSAGE_RECEIVEDDATAREPORT = require('./src/factory/controller/processSqsMessage/receivedDataReportFactory.mock')
+exports.SERVICE_DYNAMODB_SERVICEORDERTABLE = require('./src/service/dynamoDB/serviceOrderTableService.mock')
+exports.LOGGER = loggerMocks
+exports.SERVICE_LOGGER = loggerMocks
+exports.FACTORY_AXIOSRESPONSEERRORDATA = require('./src/factory/axiosResponseErrorDataFactory.mock')
+exports.HANDLER = require('./handler.mock')

@@ -1,0 +1,1 @@
+exports.agendamentoApi = require('./AgendamentoApi')

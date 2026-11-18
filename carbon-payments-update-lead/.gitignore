@@ -1,0 +1,30 @@
+# Project related ignore
+.terraform*
+**/plan.out
+**/node_modules
+.env
+npm-debug.log
+coverage
+**/*.zip
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Compiled files
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# logs
+*.log
+
+# Ignore Mac .DS_Store files
+.DS_Store
+**/.DS_Store
+
+# Ignored vscode files
+.vscode/

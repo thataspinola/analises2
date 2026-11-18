@@ -1,0 +1,53 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-cellphone-quotation",
+  "version": "1.0.0",
+  "description": "Responsável por receber os dados do lead e gerar cotação para o celular",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jest",
+    "tdd": "export NODE_ENV=test && jest --watch",
+    "coverage": "export NODE_ENV=test && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Larissa Ionafa",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.18.0",
+    "pino": "^9.6.0",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sqs": "3.1065.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "braces": "^3.0.3",
+    "cross-spawn": "^7.0.6",
+    "fast-uri": "^3.1.7",
+    "brace-expansion@1": "^1.1.18",
+    "brace-expansion@2": "^2.1.4",
+    "brace-expansion@5": "^5.0.9",
+    "form-data": "4.0.6",
+    "js-yaml": "^3.15.2",
+    "browserslist": "^4.28.7",
+    "jest": {
+      "@jest/core": {
+        "@jest/transform": {
+          "babel-plugin-istanbul": {
+            "test-exclude": {
+              "glob": {
+                "inflight": "1.0.7"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

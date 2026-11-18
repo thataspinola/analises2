@@ -1,0 +1,49 @@
+const app = require('../../index')
+const factory = require('./factory')
+
+const mockedLocalData = [
+	JSON.stringify({
+		amount: 100,
+		chargeId: '9cddfa67-30d3-4d53-b843-f12b2737d559',
+		charges: [
+			{
+				amount: 100,
+				creditCard: {
+					id: '7dc64d75-63a7-46a0-8ed6-9ab11d52f3eb',
+					preferred: true,
+					saveCard: false,
+				},
+				paymentMethod: 'CREDIT_CARD',
+			},
+		],
+		contactEmail: 'teste@teste.com.br',
+		externalId: '201131479',
+		installments: 1,
+		integrationData: {
+			orcamento: {
+				formaPagamentoEscolhida: {
+					codigoFormaPagamento: 62,
+					quantidadeParcelas: 6,
+				},
+			},
+		},
+		orderNumber: '3000662188',
+		orderPaymentId: '8c931e0a-06ee-49df-b248-1f9db6223239',
+		productCode: '61',
+		proposalId: '1131479',
+		scope: 'auto',
+		status: 'PAGA',
+		transactionId: '30006958801',
+	}),
+]
+
+const sqsInputData = factory.sqsMockedLambdaPayload.getPayload(mockedLocalData)
+
+app
+	.handler(sqsInputData)
+	.then((res) => {
+		console.log('LOCAL res: ', JSON.stringify(res, null, 2))
+	})
+	.catch((err) => {
+		console.log('LOCAL err: ', err)
+	})

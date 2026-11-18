@@ -1,0 +1,1 @@
+exports.mailServiceApi = require('./mailService')

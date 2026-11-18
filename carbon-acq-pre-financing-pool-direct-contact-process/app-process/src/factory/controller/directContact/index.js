@@ -1,0 +1,1 @@
+exports.processedDataReport = require('./processedDataReportFactory')

@@ -1,0 +1,47 @@
+{
+    "name": "@porto-seguro/hub-vendas.carbon-inspection-fail-cellphone",
+    "version": "1.0.0",
+    "description": "Função responsável por consumir a fila de falha da inspeção de celular e fazer uma requisição de envio de email de erro a lambda de email-notification",
+    "main": "index.js",
+    "scripts": {
+        "test": "export NODE_ENV=local && jest",
+        "tdd": "export NODE_ENV=local && jest --watch --coverage",
+        "coverage": "export NODE_ENV=local && npm test -- --coverage",
+        "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner/index.js"
+    },
+    "author": "José Frederico Neto",
+    "license": "ISC",
+    "dependencies": {
+        "ajv": "^8.20.0",
+        "ajv-formats": "^2.1.1",
+        "axios": "^1.15.0",
+        "dotenv": "^16.0.1",
+        "pino": "^9.6.0"
+    },
+    "devDependencies": {
+        "@aws-sdk/client-sqs": "^3.1065.0",
+        "jest": "^30.4.2",
+        "nodemon": "^3.1.14"
+    },
+    "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "braces": "^3.0.3",
+    "cross-spawn": "^7.0.6",
+    "fast-uri": "^3.1.2",
+    "form-data": "4.0.6",
+    "jest": {
+      "@jest/core": {
+        "@jest/transform": {
+          "babel-plugin-istanbul": {
+            "test-exclude": {
+              "glob": {
+                "inflight": "1.0.7"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+exports.status = require('./statusFactory')
+exports.putPaymentRegister = require('./putPaymentRegisterFactory')
+exports.ttl = require('./ttlFactory')
+exports.inputBody = require('./inputBodyFactory')
+exports.axiosHandlerError = require('./axiosHandlerErrorFactory')

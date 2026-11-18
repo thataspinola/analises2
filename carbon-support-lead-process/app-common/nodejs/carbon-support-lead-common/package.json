@@ -1,0 +1,22 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-support-lead-common",
+  "version": "1.0.0",
+  "description": "Camada resposável por reunir classes, funções e constantes de uso comum entre as funções de requisição e de processamento de leads",
+  "main": "index.js",
+  "scripts": {
+    "build": "export NODE_ENV=local && npm install",
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage"
+  },
+  "author": "Elias Pedro Ribeiro",
+  "license": "ISC",
+  "dependencies": {
+    "pino": "^8.15.1",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
+  },
+  "devDependencies": {
+    "jest": "^29.2.2"
+  }
+}

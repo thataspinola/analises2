@@ -1,0 +1,25 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-consent-consent-capture",
+  "version": "1.0.0",
+  "description": "Realiza a chamada para obter o status de opt-in do usuário por meio do documento.",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local || set NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local || set NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local || set NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local || set NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Elias Ribeiro",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "axios": "^1.7.7",
+    "pino": "^9.4.0"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.14.3-SNAPSHOT",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9"
+  }
+}

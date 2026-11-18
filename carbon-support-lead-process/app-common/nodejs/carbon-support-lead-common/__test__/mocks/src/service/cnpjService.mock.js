@@ -1,0 +1,36 @@
+exports.VALID_CNPJ = () => {
+	return '29259881000141'
+}
+exports.VALID_CNPJ_WITH_SYMBOLS = () => {
+	return '29.259.881/0001-41'
+}
+exports.VALID_ALPHANUMERIC_CNPJ = () => {
+	return '12ABC34501DE35'
+}
+exports.VALID_ALPHANUMERIC_LC_CNPJ = () => {
+	return '12abc34501de35'
+}
+exports.VALID_ALPHANUMERIC_WITH_SYMBOLS = () => {
+	return '12.ABC.345/01DE-35'
+}
+exports.VALID_CNPJ_SHORT = () => {
+	return '5854367000196'
+}
+exports.VALID_CNPJ_SHORT_WITH_SYMBOLS = () => {
+	return '5.854.367/0001-96'
+}
+exports.INVALID_CNPJ_BOTH_VERIFICATION_DIGITS = () => {
+	return '29259881000187'
+}
+exports.INVALID_CNPJ_UNIT_VERIFICATION_DIGIT = () => {
+	return '29259881000144'
+}
+exports.INVALID_ALPHANUMERIC_CNPJ_BOTH_VERIFICATION_DIGITS = () => {
+	return '12ABC34501DE00'
+}
+exports.INVALID_ALPHANUMERIC_CNPJ_UNIT_VERIFICATION_DIGIT = () => {
+	return '12ABC34501DE30'
+}
+exports.INVALID_CNPJ_SIZE = () => {
+	return '292598810001418'
+}

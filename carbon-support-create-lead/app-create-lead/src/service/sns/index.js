@@ -1,0 +1,1 @@
+exports.registerUpdateSnsService = require('./registerUpdateSnsService')

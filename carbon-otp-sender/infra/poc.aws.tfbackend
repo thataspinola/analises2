@@ -1,0 +1,7 @@
+# ------------------------------------------------------------
+# BACKEND CONFIG
+# ------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/auth/guest-auth-verification/terraform.tfstate"
+region = "ca-central-1"

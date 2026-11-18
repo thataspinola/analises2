@@ -1,0 +1,55 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-portable-device-quotation",
+  "version": "1.0.0",
+  "description": "Responsável por receber os dados do lead e gerar cotação para o celular",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=test && jest",
+    "tdd": "export NODE_ENV=test && jest --watch",
+    "coverage": "export NODE_ENV=test && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Felipe Mesquita",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.8.2",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
+    "pino": "^9.6.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1079.0",
+    "@aws-sdk/lib-dynamodb": "^3.1079.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.14.8",
+    "aws-sdk-client-mock": "^4.1.0",
+    "jest": "^30.4.2",
+    "nodemon": "^3.0.1"
+  },
+    "overrides": {
+    "glob": "^9.0.0",
+    "js-yaml" : "3.15.2",
+    "form-data": "^4.0.6",
+    "fast-xml-parser" : "4.5.5",
+    "fast-uri": "4.2.1",
+    "lodash" :"4.18.0",
+    "path-to-regexp": "8.4.0",
+    "brace-expansion": "5.0.12",
+    "minimatch": "3.1.4",
+    "braces": "3.0.3",
+    "picomatch": "2.3.2",
+    "nodemon": {
+      "simple-update-notifier": {
+        "semver": "^7.6.0"
+      }
+    },
+    "jest": {
+      "@jest/core": {
+        "jest-haste-map": {
+          "anymatch": {
+            "picomatch": "^4.0.4"
+          }
+        }
+      }
+    }
+  }
+}

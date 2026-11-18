@@ -1,0 +1,41 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-pre-financing-pool-direct-contact-request",
+  "version": "1.0.0",
+  "description": "Função responsável por fazer o registro das solicitações de contato direto por WhatsApp ou telefone (a respeito de consórcio).",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Fábio Mastelari Mansano Leite",
+  "license": "ISC",
+  "devDependencies": {
+    "@aws-sdk/client-sqs": "^3.338.0",
+    "aws-sdk-client-mock": "^2.1.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "braces": "^3.0.3",
+    "cross-spawn": "^7.0.6",
+    "form-data": "4.0.6",
+    "brace-expansion": "5.0.6",
+    "jest": {
+      "@jest/core": {
+        "@jest/transform": {
+          "babel-plugin-istanbul": {
+            "test-exclude": {
+              "glob": {
+                "inflight": "1.0.7"
+              }
+            } 
+          }
+        }
+      }
+    }
+  }
+}

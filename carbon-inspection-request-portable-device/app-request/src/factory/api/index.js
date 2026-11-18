@@ -1,0 +1,1 @@
+exports.portableDevice = require('./portableDevice')

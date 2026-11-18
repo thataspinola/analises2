@@ -1,0 +1,1 @@
+exports.deals = require('./dealsController')

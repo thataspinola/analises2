@@ -1,0 +1,1 @@
+exports.sequence = require('./sequenceService')

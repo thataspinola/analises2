@@ -1,0 +1,1 @@
+exports.propostaApi = require('./propostaApi')

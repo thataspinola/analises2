@@ -1,0 +1,1 @@
+exports.cotas = require('./cotasEndpoint')

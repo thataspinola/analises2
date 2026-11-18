@@ -1,0 +1,1 @@
+exports.postCheckinOsPayload = require('./postCheckinOsPayloadFactory')

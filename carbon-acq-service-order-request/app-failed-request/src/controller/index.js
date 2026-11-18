@@ -1,0 +1,1 @@
+exports.failedRequest = require('./failedRequestController')

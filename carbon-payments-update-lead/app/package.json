@@ -1,0 +1,25 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-payments-update-lead",
+  "version": "1.0.0",
+  "description": "Função que recebe o resultado do pagamento e atualiza o lead.",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner/localRunner.js"
+  },
+  "author": "Carbon",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.7.7",
+    "dotenv": "^16.3.1",
+    "pino": "^8.16.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  }
+}

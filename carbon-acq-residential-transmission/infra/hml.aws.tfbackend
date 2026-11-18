@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------
+# BACKEND CONFIG
+# -----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-stage"
+key = "checkout/processor/terraform.tfstate"
+region = "ca-central-1"

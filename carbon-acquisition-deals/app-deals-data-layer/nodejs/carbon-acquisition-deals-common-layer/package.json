@@ -1,0 +1,39 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-deals-data-layer",
+  "version": "1.1.0",
+  "description": "AWS Lambda Layer responsável por persistir e retornar dados de oportunidades",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=local NODE_OPTIONS=--experimental-vm-modules jest",
+    "tdd": "NODE_ENV=local NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "coverage": "npm run test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "Hub de Vendas - Carbon",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "dotenv": "^16.0.1",
+    "pino": "^6.4.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/lib-dynamodb": "^3.449.0",
+    "@aws-sdk/client-dynamodb": "^3.449.0",
+    "aws-sdk-client-mock": "^3.0.0",
+    "jest": "^29.2.2",
+    "nodemon": "^3.1.10"
+  },
+  "overrides": {
+    "glob": "^10.3.10",
+    "js-yaml": "^4.1.0",
+    "chokidar": "^4.0.1",
+    "micromatch": "^4.0.8",
+    "fast-xml-parser": "^4.4.1",
+    "brace-expansion": "^2.0.1",
+    "inflight": "npm:lru-cache@^6.0.0",
+    "jest": {
+      "picomatch": "^2.3.1"
+    }
+  }
+}

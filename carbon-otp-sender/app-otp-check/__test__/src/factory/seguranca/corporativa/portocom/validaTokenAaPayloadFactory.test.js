@@ -1,0 +1,15 @@
+const factory = require('../../../../../../src/factory')
+const MOCKS = require('../../../../../mocks/index.mock')
+
+describe('Given an getPayload call', () => {
+	test('It should a response with the expected value', async () => {
+		const getPayloadReturnValue =
+			factory.seguranca.corporativa.portocom.validaTokenAaPayload.getPayload(
+				MOCKS.FACTORY_SEGURANCA_CORPORATIVA_PORTOCOM_VALIDATOKENAAPAYLOAD_GETPAYLOAD_VALID_CPF_INPUT(),
+				MOCKS.FACTORY_SEGURANCA_CORPORATIVA_PORTOCOM_VALIDATOKENAAPAYLOAD_GETPAYLOAD_VALID_OTP_INPUT()
+			)
+		expect(getPayloadReturnValue).toEqual(
+			MOCKS.FACTORY_SEGURANCA_CORPORATIVA_PORTOCOM_VALIDATOKENAAPAYLOAD_GETPAYLOAD_VALID_RETURN()
+		)
+	})
+})

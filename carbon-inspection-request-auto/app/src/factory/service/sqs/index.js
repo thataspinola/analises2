@@ -1,0 +1,1 @@
+exports.checkInspectionRequestQueueMessage = require('./checkInspectionRequestQueueMessageFactory')

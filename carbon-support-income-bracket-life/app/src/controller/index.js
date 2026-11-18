@@ -1,0 +1,1 @@
+exports.incomeBracket = require('./faixaRendaController')

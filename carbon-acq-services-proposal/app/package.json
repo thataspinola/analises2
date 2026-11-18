@@ -1,0 +1,45 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acq-services-proposal",
+  "version": "1.0.0",
+  "description": "Função responsável por retornar o preço do orçamento do serviço",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Larissa Ionafa",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.17.0",
+    "pino": "^8.15.1"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.0",
+    "aws-sdk-client-mock": "^3.0.0",
+    "aws-sdk-client-mock-jest": "^3.0.1",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1"
+  },
+  "overrides": {
+    "fast-xml-parser": "^4.5.5",
+    "form-data": "^4.0.6",
+    "minimatch": "^3.1.4",
+    "picomatch": "^2.3.2",
+    "diff": "^5.2.1",
+    "debug": "^4.4.0",
+    "brace-expansion": "^5.0.9",
+    "glob": "^9.0.0",
+    "fast-uri": "^3.1.7",
+    "nodemon": {
+      "chokidar": {
+        "braces": "^3.0.3" 
+      }
+    },
+    "js-yaml": "^3.15.2",
+    "browserslist": "^4.28.7"
+  }
+}

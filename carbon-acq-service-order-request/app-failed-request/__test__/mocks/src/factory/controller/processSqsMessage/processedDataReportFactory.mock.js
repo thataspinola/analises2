@@ -1,0 +1,33 @@
+const MOCKS = require('../../../../index.mock')
+
+exports.GETDATAREPORT_CUSTOMERNOTIFIEDRESPONSE_TRUE_VALID_INPUT = () => {
+	return true
+}
+
+exports.GETDATAREPORT_CUSTOMERNOTIFIEDRESPONSE_FALSE_VALID_INPUT = () => {
+	return false
+}
+
+exports.GETDATAREPORT_RESERVINGRESPONSE_VALID_INPUT = () => {
+	return MOCKS.SERVICE_DYNAMODB_SERVICEORDERTABLE.CREATEITEM_SERVICEORDERTABLESERVICE_RESPONSE_PAYLOAD()
+}
+
+exports.GETDATAREPORT_CANCELPAYMENTRESERVATIONRESPONSE_VALID_INPUT = () => {
+	return MOCKS.API_HUBVENDASCARBON_PAYMENT_SERVICE_PROVISION_CHECKOUT.POSTSERVICEPROVISIONCHECKOUT_VALID_RETURN()
+}
+
+exports.GETDATAREPORT_VALID_RETURN = () => {
+	return {
+		reservingResponse: 'SAVED',
+		cancelPaymentReservationResponse: 'CANCELED',
+		customerNotifiedResponse: 'SENT',
+	}
+}
+
+exports.GETDATAREPORT_NODATA_VALID_RETURN = () => {
+	return {
+		reservingResponse: 'N/A',
+		cancelPaymentReservationResponse: 'N/A',
+		customerNotifiedResponse: 'N/A',
+	}
+}

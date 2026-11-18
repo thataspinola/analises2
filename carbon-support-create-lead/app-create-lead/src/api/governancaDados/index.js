@@ -1,0 +1,1 @@
+exports.dadosPessoa = require('./dadosPessoaApi')

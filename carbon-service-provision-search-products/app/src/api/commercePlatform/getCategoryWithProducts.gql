@@ -1,0 +1,61 @@
+query getProducts($value: String!) {
+  getPortoServicesProductsByCategoryName(name: $value) {
+    items {
+      name
+      sku
+      url_key
+      categories {
+        name
+      }
+      porto_services_metadata {
+        sort_weight
+        id
+        product_front_name
+        product_type
+        max_services
+        is_new_product
+        is_offer_product
+        partner_product_id
+        service_type_id
+        charge_type_id
+        specialty_code
+        origin_code
+        problem
+        subject
+        combo_id
+        has_external_link_redirect
+        external_link_redirect
+        external_link_text
+        card_price {
+          title
+          discount {
+            text
+          }
+          installment {
+            text
+          }
+          benefits {
+            text
+            shop_window
+          }
+          label {
+            text
+            color
+            resume_price
+          }
+          old_price
+          final_price
+        }
+        thumbnail_url
+        alt_thumbnail_url
+        need_description
+      }
+      porto_services_coupons {
+        name
+        product_card_coupon_tag_text_color
+        product_card_coupon_tag_bg_color
+        product_page_coupon_description
+      }
+    }
+  }
+}

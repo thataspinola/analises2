@@ -1,0 +1,6 @@
+# -----------------------------------------------------------------
+# BACKEND CONFIG
+# -----------------------------------------------------------------
+bucket = "hub-vendas-terraform-dev"
+key = "carbon/support/auto-update-lead/terraform.tfstate"
+region = "ca-central-1"

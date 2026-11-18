@@ -1,0 +1,1 @@
+exports.sqsMockedLambdaPayload = require('./sqsMockedLambdaPayloadFactory')

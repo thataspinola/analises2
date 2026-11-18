@@ -1,0 +1,1 @@
+exports.professionController = require('./professionController')

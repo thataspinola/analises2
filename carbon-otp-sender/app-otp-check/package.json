@@ -1,0 +1,26 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-otp-check",
+  "version": "1.0.0",
+  "description": "Função responsável por fazer a validacao de código de acesso de uso único.",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Fábio Mastelari Mansano Leite / Felipe Mesquita",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.1",
+    "pino": "^6.4.1",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "ioredis": "^5.3.2"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.10.0-SNAPSHOT",
+    "jest": "^29.2.2",
+    "nodemon": "^2.0.20"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-transmission",
+  "version": "1.0.0",
+  "description": "Aplicação responsável por ...",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./localRunner.js"
+  },
+  "author": "middleware hub de vendas",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.338.0",
+    "axios": "^1.2.1",
+    "dotenv": "^16.0.1",
+    "pino": "^6.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.2.2",
+    "nodemon": "^2.0.20",
+    "aws-sdk-client-mock": "^2.1.1"
+  }
+}

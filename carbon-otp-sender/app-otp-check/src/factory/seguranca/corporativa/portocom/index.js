@@ -1,0 +1,1 @@
+exports.validaTokenAaPayload = require('./validaTokenAaPayloadFactory')

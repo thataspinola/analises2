@@ -1,0 +1,1 @@
+exports.searchCapsAppointment = require('./searchCapsAppointmentActivity')

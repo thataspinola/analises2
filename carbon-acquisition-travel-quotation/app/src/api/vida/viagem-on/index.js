@@ -1,0 +1,1 @@
+exports.oferta = require('./ofertaApi')

@@ -1,0 +1,6 @@
+exports.response = require('./responseFactory')
+exports.axiosResponseErrorData = require('./axiosResponseErrorDataFactory')
+exports.externalApi = require('./externalApiFactory')
+exports.trace = require('./traceFactory')
+exports.consent = require('./consentFactory')
+exports.httpsAgent = require('./api/httpsAgentFactory')

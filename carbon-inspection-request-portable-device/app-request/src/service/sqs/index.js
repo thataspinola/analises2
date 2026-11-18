@@ -1,0 +1,1 @@
+exports.queue = require('./sendMessageQueueService')

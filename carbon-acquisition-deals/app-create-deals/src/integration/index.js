@@ -1,0 +1,1 @@
+exports.sns = require('./simpleNotificationService')

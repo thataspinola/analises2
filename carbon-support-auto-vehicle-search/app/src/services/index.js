@@ -1,0 +1,1 @@
+exports.validationService = require('./validationService')

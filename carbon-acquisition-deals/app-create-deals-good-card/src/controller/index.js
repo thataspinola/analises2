@@ -1,0 +1,1 @@
+exports.goodCard = require('./goodCardController')

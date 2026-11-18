@@ -1,0 +1,16 @@
+mutation RemoveItem($cartId: String!, $cartItemUid: ID!) {
+  removeItemFromCart(input: { cart_id: $cartId, cart_item_uid: $cartItemUid }) {
+    cart {
+      items {
+        id
+        uid
+        product {
+          id
+          name
+          sku
+        }
+        quantity
+      }
+    }
+  }
+}

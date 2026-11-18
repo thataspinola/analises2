@@ -1,0 +1,1 @@
+exports.getCoupon = require('./getCouponActivity')

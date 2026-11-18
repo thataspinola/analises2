@@ -1,0 +1,25 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-transmission-auto",
+  "version": "1.0.0",
+  "description": "Função responsável por consumir a fila de transmissão de apólice e disparar as ações relacionadas com a api do seguro auto",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Fábio Mastelari Mansano Leite",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.2.1",
+    "pino": "^6.4.1"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-token": "^2.13.6",
+    "jest": "^29.2.2",
+    "nodemon": "^2.0.20"
+  }
+}

@@ -1,0 +1,1 @@
+exports.otpRequest = require('./otpRequestController')

@@ -1,0 +1,1 @@
+exports.paymentCheckout = require('./paymentCheckoutEndpointPayloadFactory')

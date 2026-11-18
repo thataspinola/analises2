@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name="format-detection" content="telephone=no,address=no,email=no,date=no,url=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+    <!--[if (gte mso 9)|(IE)]> <style type="text/css"> body, table, td, a, h1, p {font-family: 'Open Sans', sans-serif !important; line-height:110%} body {background-color: #eff4ef !important;} </style> <![endif]-->
+</head>
+
+<body bgcolor="#eff4ef"
+    style="background-color: #eff4ef !important; width: 100%; padding: 0; margin: 0; font-family: 'Open Sans', sans-serif !important;">
+    <center>
+        <!--[if mso | IE]> <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600"> <tr> <td> <![endif]-->
+        <table role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
+            style="border-collapse: collapse; border-spacing: 0; display: table; margin-left: auto; margin-right: auto; width: 100%; max-width: 600px; padding: 0; position: relative; vertical-align: top; background-color: #ffffff !important;line-height: 110%;box-shadow: 0px 0px 10px #dedede;mso-line-height-rule:exactly;line-height: 120%;border-radius: 20px; overflow: hidden !important;"
+            bgcolor="#ffffff">
+            <!--[if gte mso 9]> <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false"> <v:textbox inset="0,0,0,0"> ![endif]-->
+            <tr>
+                <td>
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;background-color: transparent;" width="600">
+                        <tr>
+                            <td align="center"
+                                style="width: 540px;padding-left: 0px; padding-right: 0px; padding-top: 0px; padding-bottom: 0px;">
+                                <a href="##" target="_blank" style="text-decoration: none;">
+                                    <img src="https://content.campanhaporto.com.br/crm/10733/topo.png"
+                                        style="clear: both;display: block;width: 100%" alt="Porto Seguro | Seguro Celular: pedido identificado
+                                        ">
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 0px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;" width="540">
+                                    <tr>
+                                        <td align="left">
+                                            <font style="font-size: 18px;">Olá, <b>%%=Propercase(FirstName)=%%</b>
+                                            </font>
+                                            <br><br>
+
+                                            O seu pedido de Seguro Celular da Porto <b>já foi identificado</b> e, em breve, será confirmado.
+                                            <br><br>
+
+                                            Aguarde só mais um pouquinho pelo e-mail de confirmação do pedido para prosseguir 
+                                            com a verificação do seu aparelho. 
+                                            Nesse período, se você não conseguir concluir a vistoria no App Porto, não se preocupe, isso é normal.
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td align="center"
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 30px;padding-bottom: 0px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-radius: 20px; background-color: #00a1fc; padding: 20px 40px;"
+                                    width="540" align="center">
+                                    <tr>
+
+                                        <td align="center" style="width: 100px;">
+                                            <img src="https://uqmddr.stripocdn.email/content/guids/CABINET_0761d28c1c8c434f8628411e201ebdee/images/corretor_icone.png"
+                                                style="display: block;">
+                                        </td>
+                                        <td style="width: 10px;"></td>
+                                        <td style="color: #ffffff; width: 400px;">
+                                            <b> Este é o seu corretor:</b><br>
+                                            @NOMECORRETOR<br>
+                                            @TELEFONECORRETOR<br>
+                                            @EMAILCORRETOR
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 30px;text-align: center;padding-bottom: 30px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;" width="540">
+                                    <tr>
+                                        <td align="center">
+                                            <font style="font-size: 20px;letter-spacing: -1.1px;font-weight: 700;">Todo
+                                                cuidado é <u>Porto</u>.</font>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;background-color: #000000;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-bottom: 8px;text-align: center;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;padding-bottom: 30px;"
+                                    width="540">
+                                    <tr>
+                                        <td align="left"
+                                            style="text-align: left;font-size: 16px;vertical-align: middle;color: #ffffff;padding-top: 3px;">
+                                            <b>Baixe o App</b> e fale com seu <b>Corretor.</b>
+                                        </td>
+                                        <td align="right" style="padding-top:20px;padding-bottom: 8px;">
+                                            <table align="right" border="0" cellpadding="0" cellspacing="0"
+                                                role="presentation"
+                                                style="border-collapse: collapse; border-spacing: 0;">
+                                                <tr>
+                                                    <td align="right">
+                                                        <a href="https://play.google.com/store/apps/details?id=br.com.portoseguro.experienciacliente.mundoporto&referrer=utm_source%3Dhub-vendas%26utm_medium%3Dcta-download%26utm_campaign%3Dhub-vendas"
+                                                            target="_blank" title="Baixe o App da Porto na Google">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/8232/google.png"
+                                                                alt="Baixe o APP da Porto no Google Play"
+                                                                style="width: 100px;">
+                                                        </a>
+                                                    </td>
+                                                    <td align="center" style="width: 10px;"></td>
+                                                    <td align="left">
+                                                        <a href="https://apps.apple.com/app/apple-store/id1511026277"
+                                                            target="_blank" title="Baixe o App da Porto na Apple">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/8232/apple.png"
+                                                                alt="Baixe o APP da Porto na App Store"
+                                                                style="width: 100px;">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td><!-- final blocos-->
+            </tr>
+            <!--[if gte mso 9]> </v:textbox> </v:rect> <![endif]-->
+        </table>
+        <!--[if mso | IE]> </td> </tr> </table> <![endif]-->
+
+
+
+        <!-- RODAPÉ -->
+        <table align="center" role="presentation" width="600" cellspacing="0" cellpadding="0" border="0"
+            style="padding-top: 30px;padding-bottom: 30px;background-color: #eff4ef;">
+            <tr>
+                <td>
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td style="width: 540px;padding-left: 30px;padding-right: 30px;padding-bottom: 0px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;" width="540">
+                                    <tr>
+                                        <td align="center" style="width:540px;">
+                                            <!-- <img src="https://content.campanhaporto.com.br/Porto/9229/logo.png" alt="Logo Porto"> -->
+                                            <img src="https://content.campanhaporto.com.br/Porto/9229/logo.png"
+                                                alt="Logo Porto + Cirque du Soleil CRYSTAL">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 20px;text-align: center;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;" width="540">
+                                    <tr>
+                                        <td align="center" style="vertical-align: middle;">
+                                            <table align="center" role="presentation" border="0" cellspacing="0"
+                                                cellpadding="0" style="">
+                                                <tr>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href=" https://www.instagram.com/porto/" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga o Instagram da @porto">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/instagram.png"
+                                                                style="clear: both;display: block;" alt="Instagram">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://www.facebook.com/porto/" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga o Facebook da Porto">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/facebook.png"
+                                                                style="clear: both;display: block;" alt="Facebook">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://twitter.com/portoseguro" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga o Twitter da @porto">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/x.png"
+                                                                style="clear: both;display: block;" alt="Twitter">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://br.linkedin.com/company/porto" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga o Linkedin da Porto">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/linkedin.png"
+                                                                style="clear: both;display: block;" alt="Linkedin">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://www.youtube.com/@portoseguro" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Se inscreva no canal do Youtube da Porto">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/youtube.png"
+                                                                style="clear: both;display: block;" alt="Youtube">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://www.tiktok.com/@porto" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga a Porto no Tiktok">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/tiktok.png"
+                                                                style="clear: both;display: block;" alt="Tiktok">
+                                                        </a>
+                                                    </td>
+                                                    <td style="width: 10px;"></td>
+                                                    <td>
+                                                        <a href="https://www.threads.net/@porto" target="_blank"
+                                                            style="text-decoration: none;"
+                                                            title="Siga a Porto no Threads">
+                                                            <img src="https://content.campanhaporto.com.br/Porto/9229/threads.png"
+                                                                style="clear: both;display: block;" alt="Threads">
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 20px;">
+                                <table border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;" width="540">
+                                    <tr>
+                                        <td align="center"
+                                            style="width:540px;font-size: 12px; line-height: 110%; text-align: center; word-wrap: break-word;color: #8d8d8d;">
+                                            Porto Seguro Cia. de Seguros Gerais – CNPJ: 61.198.164/0001-60<br>
+                                            Al. Barão de Piracicaba, 740 – Campos Elíseos – São Paulo – SP – CEP
+                                            01216-012
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="height: 20px;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left"
+                                            style="width:540px;font-size: 10px; line-height: 110%; text-align: justify; word-wrap: break-word;color: #8d8d8d;">
+
+                                            Informações reduzidas. Porto Seguro Cia. de Seguros Gerais. CNPJ:
+                                            61.198.164/0001-60. Processo SUSEP: 15414.612738/2020-81. O registro do
+                                            produto é automático e não representa aprovação ou recomendação por parte da
+                                            Susep.
+                                            <br><br>
+                                            (11) 3366-3110 (Grande São Paulo) | 3004-6268 (Capitais e grandes centros) |
+                                            0800-727-8118 (Demais localidades) | 0800-727-2765 (SAC - cancelamento,
+                                            reclamações e informações) | 0800-727-8736 (Atendimento exclusivo para
+                                            deficientes auditivos ) | 0800-727-1184 (Ouvidoria - das 8h15 às 18h30, de
+                                            segunda a sexta-feira, exceto feriados). Site:
+                                            www.portoseguro.com.br/celular.
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 20px;text-align: center;padding-bottom: 0px;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: separate; border-spacing: 0;background-color: #eff4ef;border-radius: 10px;padding-top: 10px;padding-bottom: 10px;border: 1px solid #e4e9e4"
+                                    width="540">
+                                    <tr>
+                                        <td align="left" style="width: 200px;">
+                                            <table align="center" border="0" cellpadding="0" cellspacing="0"
+                                                role="presentation">
+                                                <tr>
+                                                    <td align="left" style="padding-top: 5px;">
+                                                        <img src="https://content.campanhaporto.com.br/Porto/9229/whatsapp.png"
+                                                            alt="ícone WhatsApp" style="width: 20px;">
+                                                    </td>
+                                                    <td style="width: 5px;"></td>
+                                                    <td align="left" style="vertical-align: middle;">
+                                                        <a href="http://porto.vc/whatsapp" target="_blank"
+                                                            title="Nos envie uma mensagem sempre que precisar. Atendimento 24 horas por dia."
+                                                            style="color: #000000;text-decoration: none;">
+                                                            <font style="font-size: 18px;color: #00a1fc">
+                                                                <b style="font-weight: 700;">11 3003-9303</b>
+                                                            </font>
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td
+                                            style="width: 430px;word-wrap: break-word;font-size: 12px; line-height: 120%;text-align: left;padding-left: 20px;vertical-align: middle;">
+                                            <a href="http://porto.vc/whatsapp" target="_blank"
+                                                title="Nos envie uma mensagem sempre que precisar. Atendimento 24 horas por dia."
+                                                style="color: #8d8d8d;text-decoration: none;"><b>Nos envie uma mensagem
+                                                    sempre que precisar.</b><br> Atendimento 24 horas por dia.</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0"
+                        style="border-collapse: collapse; border-spacing: 0;" width="600">
+                        <tr>
+                            <td
+                                style="width: 540px;padding-left: 30px;padding-right: 30px;padding-top: 20px;text-align: center;">
+                                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation"
+                                    style="border-collapse: collapse; border-spacing: 0;font-size: 10px;" width="540">
+                                    <tr>
+                                        <td align="center" style="color: #8d8d8d;font-size: 10px;">
+                                            <a href="https://www.portoseguro.com.br/pdc/login" target="_blank"
+                                                title="Área do Cliente"
+                                                style="text-decoration: none; font-size: 11px; text-decoration: underline;color: #8d8d8d;">Área
+                                                do Cliente</a> |
+
+                                            <a href="https://www.portoseguro.com.br/fale-conosco/contatos"
+                                                target="_blank" title="Atendimento"
+                                                style="text-decoration: none; font-size: 11px; text-decoration: underline;color: #8d8d8d;">Atendimento</a>
+                                            |
+
+                                            <a href="https://www.portoseguro.com.br/sustentabilidade" target="_blank"
+                                                style="text-decoration: none; font-size: 11px; text-decoration: underline;color: #8d8d8d;"
+                                                title="Sustentabilidade">Sustentabilidade</a> |
+
+                                            <a href="https://www.portoseguro.com.br/institucional/noticias/seguranca"
+                                                target="_blank"
+                                                style="text-decoration: none; font-size: 11px; text-decoration: underline;color: #8d8d8d;"
+                                                title="Sustentabilidade">Segurança</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <!-- FIM RODAPÉ -->
+    </center>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+exports.rastreabilidadeCdc = require('./rastreabilidadeCdc')

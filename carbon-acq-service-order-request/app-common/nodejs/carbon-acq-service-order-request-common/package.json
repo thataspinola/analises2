@@ -1,0 +1,29 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acq-service-order-request-common-layer",
+  "version": "1.0.0",
+  "description": "Camada resposável por reunir classes, funções e constantes de uso comum",
+  "main": "index.js",
+  "scripts": {
+    "build": "export NODE_ENV=local && npm install",
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage"
+  },
+  "author": "Larissa Ionafa",
+  "license": "ISC",
+  "dependencies": {
+    "pino": "^6.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "minimatch": "^3.1.4",
+    "cross-spawn": "^7.0.5",
+    "picomatch": "^2.3.2",
+    "brace-expansion": "^1.1.17",
+    "js-yaml": "^3.15.2",
+    "browserlist": "^4.28.7"
+  }
+}

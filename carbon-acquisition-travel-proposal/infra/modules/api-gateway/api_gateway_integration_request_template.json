@@ -1,0 +1,4 @@
+{
+  "input": "$util.escapeJavaScript($input.json('$'))",
+  "stateMachineArn": "${step_function_invoke_arn}"
+}

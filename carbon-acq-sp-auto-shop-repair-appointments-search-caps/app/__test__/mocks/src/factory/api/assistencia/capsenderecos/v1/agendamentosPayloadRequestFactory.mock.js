@@ -1,0 +1,19 @@
+const MOCKS = require('../../../../../../index.mock')
+
+exports.GETPAYLOAD_VALID_RETURN = () => {
+	return {
+		codigosCaps:
+			MOCKS.API_ASSISTENCIA_CAPSENDERECOS_V1_AGENDAMENTOS.VALID_INPUT()
+				.capsCodes,
+		codigosServicos:
+			MOCKS.API_ASSISTENCIA_CAPSENDERECOS_V1_AGENDAMENTOS.VALID_INPUT()
+				.serviceCodes,
+		disponibilidadeData:
+			MOCKS.API_ASSISTENCIA_CAPSENDERECOS_V1_AGENDAMENTOS.VALID_INPUT()
+				.dateAvailability,
+	}
+}
+
+exports.GETPAYLOAD_PARSEDJSON_VALID_INPUT = () => {
+	return MOCKS.API_ASSISTENCIA_CAPSENDERECOS_V1_AGENDAMENTOS.VALID_INPUT()
+}

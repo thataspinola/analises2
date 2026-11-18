@@ -1,0 +1,1 @@
+exports.serviceOrderRequested = require('./serviceOrderRequestedFactory')

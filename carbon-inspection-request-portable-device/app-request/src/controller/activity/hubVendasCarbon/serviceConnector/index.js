@@ -1,0 +1,1 @@
+exports.googleAnalytics = require('./googleAnalyticsActivity')

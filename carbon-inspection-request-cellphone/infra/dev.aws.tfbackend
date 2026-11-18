@@ -1,0 +1,7 @@
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-dev"
+key = "carbon/payments/inspection-request-cellphone/terraform.tfstate"
+region = "ca-central-1"

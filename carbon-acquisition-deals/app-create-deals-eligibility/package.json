@@ -1,0 +1,39 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-create-deals-eligibility",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "pino": "^8.15.1"
+  },
+  "devDependencies": {
+    "@porto-seguro/hub-vendas.carbon-acquisition-deals-data-layer": "file:../app-deals-data-layer/nodejs/carbon-acquisition-deals-common-layer",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.4.4",
+    "jest": "^30.5.2",
+    "nodemon": "^3.1.10"
+  },
+  "overrides": {
+    "glob": "^10.3.10",
+    "js-yaml": "^4.1.0",
+    "chokidar": "^4.0.1",
+    "micromatch": "^4.0.8",
+    "fast-xml-parser": "^4.4.1",
+    "brace-expansion": "^2.0.1",
+    "inflight": "npm:lru-cache@^6.0.0",
+    "jest": {
+      "picomatch": "^2.3.1"
+    }
+  }
+}

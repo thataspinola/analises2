@@ -1,0 +1,1 @@
+exports.portoPayCardsApi = require('./portoPayCardsApi')

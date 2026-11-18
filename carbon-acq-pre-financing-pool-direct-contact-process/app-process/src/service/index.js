@@ -1,0 +1,9 @@
+const CONSTANT = require('../property')
+const common = require(CONSTANT.COMMON_LIBRARY_LOCATION)
+exports.sqs = require('./sqs')
+exports.sns = require('./sns')
+exports.dynamoDb = require('./dynamoDb')
+exports.logger = common.service.logger
+exports.validation = common.service.validation
+exports.cpfValidation = common.service.cpfValidation
+exports.cnpjValidation = common.service.cnpjValidation

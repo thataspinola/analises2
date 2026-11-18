@@ -1,0 +1,1 @@
+exports.vidaOn = require('./vidaOnApi')

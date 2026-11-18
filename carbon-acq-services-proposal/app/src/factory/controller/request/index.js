@@ -1,0 +1,1 @@
+exports.processedReturnPayload = require('./processedReturnPayloadFactory')

@@ -1,0 +1,51 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-email-notification",
+  "version": "1.0.0",
+  "description": "Função por receber uma chamada do produto para o Carbon poder fazer o envio de email com o status da aquisição do produto.",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/localRunner/index.js"
+  },
+  "author": "Carbon",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.15.0",
+    "pino": "^9.6.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sqs": "3.1073.0",
+    "@aws-sdk/client-dynamodb": "^3.1054.0",
+    "@aws-sdk/lib-dynamodb": "^3.1054.0",
+    "@porto-seguro/hub-vendas.carbon-postponed-payment-data-layer": "^1.0.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  },
+   "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "braces": "^3.0.3",
+    "cross-spawn": "^7.0.6",
+    "fast-uri": "^3.1.3",
+    "brace-expansion": "5.0.7",
+    "jest": {
+      "@jest/core": {
+        "@jest/transform": {
+          "babel-plugin-istanbul": {
+            "test-exclude": {
+              "glob": {
+                "inflight": "1.0.7"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

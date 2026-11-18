@@ -1,0 +1,11 @@
+# -----------------------------------------------------------------
+# OUTPUTS
+# -----------------------------------------------------------------
+
+output "sqs_arn" {
+  value = aws_sqs_queue.queue.arn
+}
+
+output "sqs_dlq_arn" {
+  value = aws_sqs_queue.queue_dlq.arn
+}

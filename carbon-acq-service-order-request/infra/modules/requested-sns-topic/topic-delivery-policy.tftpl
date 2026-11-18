@@ -1,0 +1,17 @@
+{
+  "http": {
+    "defaultHealthyRetryPolicy": {
+      "minDelayTarget": ${retryPolicyMinDelayTarget},
+      "maxDelayTarget": ${retryPolicyMaxDelayTarget},
+      "numRetries": ${retryPolicyNumRetries},
+      "numMaxDelayRetries": ${retryPolicyNumMaxDelayRetries},
+      "numNoDelayRetries": ${retryPolicyNumNoDelayRetries},
+      "numMinDelayRetries": ${retryPolicyNumMinDelayRetries},
+      "backoffFunction": "${retryPolicyBackoffFunction}"
+    },
+    "disableSubscriptionOverrides": ${disableSubscriptionOverrides},
+    "defaultThrottlePolicy": {
+      "maxReceivesPerSecond": ${throttlePolicyMaxReceivesPerSecond}
+    }
+  }
+}

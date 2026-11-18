@@ -1,0 +1,1 @@
+exports.hubVendasCarbon = require('./hub-vendas-carbon')

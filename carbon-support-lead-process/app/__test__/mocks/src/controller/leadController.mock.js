@@ -1,0 +1,19 @@
+const CONSTANTS = require('../../../../src/property')
+const MESSAGE_ID_VALUE = 'messageId'
+const VALIDATION_ERROR_MESSAGE_VALUE = 'Validation Error'
+
+exports.MESSAGE_ID = () => {
+    return MESSAGE_ID_VALUE
+}
+
+exports.LOGGER_INFO_MESSAGE = () => {
+    return `${CONSTANTS.MESSAGES.LEAD_CONTROLLER.CREATED_MESSAGE_SUCCESS} ${MESSAGE_ID_VALUE}`
+}
+
+exports.VALIDATION_ERROR_MESSAGE = () => {
+    return VALIDATION_ERROR_MESSAGE_VALUE
+}
+
+exports.CURRENT_ACTIVITY_ERROR = () => {
+    return `${CONSTANTS.MESSAGES.LEAD_CONTROLLER.ACTIVITY} '${VALIDATION_ERROR_MESSAGE_VALUE}'`
+}

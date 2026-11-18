@@ -1,0 +1,1 @@
+exports.leadInProgress = require('./leadInProgressTable')

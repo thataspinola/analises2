@@ -1,0 +1,1 @@
+exports.serviceOrderTableService = require('./serviceOrderTableService')

@@ -1,0 +1,73 @@
+query GetCart($cartId: String!) {
+  cart(cart_id: $cartId) {
+    total_quantity
+    items {
+      uid
+      id
+      proposal_id
+      ga_properties {
+        item_id
+        item_name
+        item_category
+        item_brand
+        item_variant
+      }
+      lead_identifier
+      custom_price
+      product_name
+      product_scope
+      prices {
+        installments {
+          value
+          quantity
+        }
+        price {
+          value
+          currency
+        }
+        discounts {
+          label
+          amount {
+            currency
+            value
+          }
+        }
+        row_total_including_tax {
+          value
+        }
+      }
+      product {
+        name
+        sku
+      }
+      quotation_data {
+        summary {
+          label
+          value
+        }
+        coverage {
+          title
+          items {
+            label
+            value
+          }
+        }
+        details {
+          title
+          items {
+            label
+            value
+          }
+        }
+        information
+      }
+      broker_data {
+        id
+        email
+        name
+        phone
+        susep_code
+      }
+    }
+  }
+}

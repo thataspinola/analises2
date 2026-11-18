@@ -1,0 +1,1 @@
+exports.analyticsCollect = require('./analyticsCollectService')

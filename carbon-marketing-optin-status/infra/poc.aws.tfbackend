@@ -1,0 +1,7 @@
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/registrations/consent/marketing-optin-status/terraform.tfstate"
+region = "ca-central-1"

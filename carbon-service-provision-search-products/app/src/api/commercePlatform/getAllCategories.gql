@@ -1,0 +1,11 @@
+query {
+  getPortoServicesCategories(has_icon_code: true, id_list: [], name: "") {
+    total_count
+    items {
+      id
+      name
+      url_key
+      icon_code
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.js",
+      "options": {
+        "semi": false,
+        "jsxSingleQuote": true,
+        "useTabs": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    }
+  ]
+}

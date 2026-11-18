@@ -1,0 +1,8 @@
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-prd"
+key = "carbon/support/auto/vehicle-search/terraform.tfstate"
+region = "ca-central-1"
+encrypt = true

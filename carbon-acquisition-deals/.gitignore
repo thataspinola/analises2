@@ -1,0 +1,71 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Yarn v2
+.yarn/cache
+.yarn/unplugged
+
+# Logs e arquivos temporários
+logs/
+*.log
+*.log.*
+*.tmp
+
+# Build e output
+dist/
+build/
+out/
+
+# Dependências de desenvolvimento
+/.pnp
+.pnp.js
+.pnp.cjs
+
+# Arquivos específicos do Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+*.terraform.lock.hcl
+**/plan.out
+
+# Arquivos de credenciais
+*.pem
+*.env
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+.AppleDouble/
+.LSOverride
+
+# Icones customizados do macOS
+._*
+
+# Arquivos de swap de editores de texto
+.vscode/
+.vs/
+*.code-workspace
+*.swp
+*.swo
+
+# Jest
+coverage/
+
+# Arquivos de backup
+*~
+*.bak
+
+# Arquivos comprimidos
+*.zip
+*.rar
+*.gz
+*.tar
+
+# Outros
+.vagrant/

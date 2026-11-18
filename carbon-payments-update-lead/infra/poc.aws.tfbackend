@@ -1,0 +1,8 @@
+
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/payments/update-lead/terraform.tfstate"
+region = "ca-central-1"

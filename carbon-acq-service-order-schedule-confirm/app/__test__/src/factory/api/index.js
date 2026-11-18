@@ -1,0 +1,1 @@
+exports.couponApi = require('./cupomApiRequestFactory')

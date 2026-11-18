@@ -1,0 +1,11 @@
+{
+    getPortoServicesCouponsCurrentActive {
+        name
+        start_at
+        end_at
+        home_banner_json
+        product_card_coupon_tag_text_color
+        product_card_coupon_tag_bg_color
+        product_page_coupon_description
+    }
+}

@@ -1,0 +1,8 @@
+
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "acquisition/life-insurance/professions/terraform.tfstate"
+region = "ca-central-1"

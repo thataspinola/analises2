@@ -1,0 +1,1 @@
+exports.geraTokenAaPayload = require('./geraTokenAaPayloadFactory')

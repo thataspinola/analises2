@@ -1,0 +1,1 @@
+exports.processSqsMessage = require('./processSqsMessage')

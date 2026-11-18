@@ -1,0 +1,1 @@
+exports.searchProducts = require('./searchProductsController')

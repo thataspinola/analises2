@@ -1,0 +1,65 @@
+const MOCKS_FACTORY_CONTROLLER_PROCESSSNSSQSMESSAGE_PROCESSEDDATAREPORT = require('../factory/controller/processSnsSqsMessage/processedDataReportFactory.mock')
+
+const PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_PAYLOAD_INPUT_VALUE = {
+	number: '12345',
+	coupon: 'valid-coupon',
+	documentNumber: '12345678901',
+}
+
+const PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE = {
+	payload: { ...PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_PAYLOAD_INPUT_VALUE },
+}
+
+exports.PROCESS_EXCEPTION_SIMULATE_VALID_PARSEDJSONQUEUEMESSAGE_INPUT = () => {
+	return {
+		payload: {
+			number: '12345',
+			coupon: 'Except',
+			documentNumber: '12345678901',
+		},
+	}
+}
+
+exports.PROCESS_EXCEPTION_SIMULATE_MESSAGE = () => {
+	return 'Erro no processamento de mensagem da fila: Erro recebido da chamada da API: código \'500\' dados: \'{ "message": "Simulação de falha" }\''
+}
+
+exports.PROCESS_VALID_MESSAGEID_INPUT = () => {
+	return 'd7c1792c-5e09-4e91-9bbe-f70642df481f'
+}
+
+exports.PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_INPUT = () => {
+	return PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE
+}
+
+exports.PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_PAYLOAD_INPUT = () => {
+	return PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_PAYLOAD_INPUT_VALUE
+}
+
+exports.PROCESS_INVALID_PARSEDJSONQUEUEMESSAGE_INPUT = () => {
+	const PROCESS_INVALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE = {
+		...PROCESS_VALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE,
+	}
+	delete PROCESS_INVALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE.payload
+	return PROCESS_INVALID_PARSEDJSONQUEUEMESSAGE_INPUT_VALUE
+}
+
+exports.PROCESS_INPUT_VALIDATION_EXCEPTION_MESSAGE = () => {
+	return 'Validation error'
+}
+
+exports.PROCESS_INPUT_VALIDATION_CPFCNPJ_EXCEPTION_MESSAGE = () => {
+	return 'Erro no processamento de mensagem da fila: Número de CPF/CNPJ inválido'
+}
+
+exports.PROCESS_UNEXPECTED_INPUT_VALIDATION_EXCEPTION_MESSAGE = () => {
+	return 'Unexpected validation error'
+}
+
+exports.PROCESS_VALID_RETURN = () => {
+	return MOCKS_FACTORY_CONTROLLER_PROCESSSNSSQSMESSAGE_PROCESSEDDATAREPORT.GETDATAREPORT_COUPONREDEEMRESPONSE_VALID_INPUT()
+}
+
+exports.PROCESS_GENERIC_EXCEPTION_MESSAGE_BEGINNING = (errorMessage) => {
+	return 'General error'
+}

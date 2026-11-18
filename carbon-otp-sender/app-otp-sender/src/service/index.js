@@ -1,0 +1,5 @@
+exports.logger = require('./loggerService')
+exports.validation = require('./validationService')
+exports.cpfValidation = require('./cpfValidationService')
+exports.sqs = require('./sqs')
+exports.tokenAaService = require('./tokenAaService')

@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------
+# BACKEND CONFIG
+# -----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/acquisition/travel/proposal-workflow/terraform.tfstate"
+region = "ca-central-1"

@@ -1,0 +1,7 @@
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-dev"
+key = "carbon/acquisition/pre-financing-pool/direct-contact-request/terraform.tfstate"
+region = "ca-central-1"

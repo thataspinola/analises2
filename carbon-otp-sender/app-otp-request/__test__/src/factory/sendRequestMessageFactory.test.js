@@ -1,0 +1,18 @@
+const factory = require('../../../src/factory')
+const MOCKS = require('../../mocks/index.mock')
+
+describe('Given an getPayload call', () => {
+	test('It should a response with the expected value', async () => {
+		const returnValue = factory.sendRequestMessage.getMessage(
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_CPF_INPUT(),
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_DESTINATIONNUMBER_INPUT(),
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_EMAILDESTINATIONADDRESS_INPUT(),
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_CORPORATIVEHEADER_INPUT(),
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_PESCOD_INPUT(),
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_FORMDATA_INPUT()
+		)
+		expect(returnValue).toEqual(
+			MOCKS.FACTORY_SENDREQUESTMESSAGE_GETMESSAGE_VALID_RETURN()
+		)
+	})
+})

@@ -1,0 +1,1 @@
+exports.cardProposalsController = require('./cardProposalsController')

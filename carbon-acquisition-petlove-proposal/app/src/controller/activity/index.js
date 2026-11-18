@@ -1,0 +1,6 @@
+exports.inputValidation = require('./inputValidationActivity')
+exports.exceptionSimulation = require('./exceptionSimulationActivity')
+exports.leadManagement = require('./leadManagementActions')
+exports.cart = require('./cartActions')
+exports.commerce = require('./commerceActions')
+exports.businessPartner = require('./businessPartnerActions')

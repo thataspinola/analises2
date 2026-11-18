@@ -1,0 +1,7 @@
+# -----------------------------------------------------------------
+# BACKEND CONFIG
+# -----------------------------------------------------------------
+bucket = "hub-vendas-terraform-prd"
+key = "carbon/payments/inspection-request-auto/terraform.tfstate"
+region = "ca-central-1"
+encrypt = true

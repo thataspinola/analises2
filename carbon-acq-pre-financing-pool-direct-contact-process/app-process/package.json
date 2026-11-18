@@ -1,0 +1,53 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-pre-financing-pool-direct-contact-processor",
+  "version": "1.0.0",
+  "description": "Função responsável por fazer o processamento das solicitações de contato direto por WhatsApp ou telefone (a respeito de consórcio).",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Fábio Mastelari Mansano Leite",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.772.0",
+    "@aws-sdk/lib-dynamodb": "^3.772.0",
+    "@aws-sdk/util-dynamodb": "^3.252.0",
+    "aes-js": "^3.1.2",
+    "axios": "^1.15.0",
+    "crypto-js": "^4.2.0",
+    "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sns": "^3.1045.0",
+    "@aws-sdk/client-sqs": "^3.1045.0",
+    "aws-sdk-client-mock-jest": "^4.1.0",
+    "aws-sdk-client-mock": "^4.0.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.17.1",
+    "jest": "^30.4.2",
+    "nodemon": "^3.1.14"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "picomatch": "^2.3.2",
+    "braces": "^3.0.3",
+    "cross-spawn": "^7.0.6",
+    "form-data": "4.0.6",
+    "brace-expansion": "5.0.6",
+    "jest": {
+      "@jest/core": {
+        "@jest/transform": {
+          "babel-plugin-istanbul": {
+            "test-exclude": {
+              "glob": {
+                "inflight": "1.0.7"
+              }
+            } 
+          }
+        }
+      }
+    }
+  }
+}

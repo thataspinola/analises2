@@ -1,0 +1,1 @@
+exports.otpSender = require('./otpSenderController')

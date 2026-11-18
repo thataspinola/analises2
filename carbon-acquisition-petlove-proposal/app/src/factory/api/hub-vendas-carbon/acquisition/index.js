@@ -1,0 +1,1 @@
+exports.cartCheckoutApiRequest = require('./cartCheckoutApiRequestPayload')

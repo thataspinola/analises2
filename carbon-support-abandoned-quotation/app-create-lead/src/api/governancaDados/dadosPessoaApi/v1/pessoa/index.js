@@ -1,0 +1,1 @@
+exports.documentoIdentificacao = require('./documentoIdentificacaoEndpoint')

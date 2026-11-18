@@ -1,0 +1,1 @@
+exports.postBaixaEndpointFactory = require('./postBaixaEndpointFactory')

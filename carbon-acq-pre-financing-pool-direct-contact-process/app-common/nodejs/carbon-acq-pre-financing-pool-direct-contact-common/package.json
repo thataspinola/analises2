@@ -1,0 +1,26 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acq-pre-financing-pool-direct-contact-common-layer",
+  "version": "1.0.0",
+  "description": "Camada resposável por reunir classes, funções e constantes de uso comum entre as funções de requisição e de processamento do pedido de contato via WhatsApp ou telefone referente ao consórcio",
+  "main": "index.js",
+  "scripts": {
+    "build": "export NODE_ENV=local && npm install",
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage"
+  },
+  "author": "Fábio Mastelari Mansano Leite",
+  "license": "ISC",
+  "dependencies": {
+    "pino": "^8.15.1",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  },
+  "overrides": {
+    "glob": "^9.0.0",
+    "braces": "^3.0.3"
+  }
+}

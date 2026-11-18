@@ -1,0 +1,1 @@
+exports.sendSmsPayload = require('./sendSmsPayloadFactory')

@@ -1,0 +1,34 @@
+const MOCKS = require('../../../../index.mock')
+
+const POSTCOMMERCEQUOTATION_VALID_RETURN_VALUE =
+	'tokenCommerceQuotationGeneration'
+
+exports.POSTCOMMERCEQUOTATION_AXIOS_SUCCESS_RESPONSE_DATA = () => {
+	return {
+		status: 200,
+		data: [
+			{
+				token: 'tokenCommerceQuotationGeneration',
+			},
+		],
+	}
+}
+
+const POSTCOMMERCEQUOTATION_INVALID_RETURN_VALUE = {
+	message: 'Error message',
+}
+
+exports.POSTCOMMERCEQUOTATION_AXIOS_INVALID_SUCCESS_RESPONSE_DATA = () => {
+	return {
+		status: 200,
+		data: POSTCOMMERCEQUOTATION_INVALID_RETURN_VALUE,
+	}
+}
+
+exports.POSTCOMMERCEQUOTATION_VALID_PAYLOAD_INPUT = () => {
+	return MOCKS.FACTORY_API_COMMERCEMAGENTO_PORTO_QUOTATIONAPIREQUESTPAYLOAD.REQUEST_PAYLOAD_EXPECTED_OUTPUTVALID()
+}
+
+exports.POSTCOMMERCEQUOTATION_VALID_RETURN = () => {
+	return POSTCOMMERCEQUOTATION_VALID_RETURN_VALUE
+}

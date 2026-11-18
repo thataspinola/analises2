@@ -1,0 +1,30 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-payments-check-inspection-request",
+  "version": "1.0.0",
+  "description": "Função responsável por fazer a coleta de status da vistoria.",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && TZ=UTC jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && nodemon ./__test__/utils/localRunner.js"
+  },
+  "author": "Bruno Vieira Rocha",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.2.1",
+    "pino": "^6.4.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-dynamodb": "^3.504.0",
+    "@aws-sdk/client-sqs": "^3.445.0",
+    "@aws-sdk/lib-dynamodb": "^3.504.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.13.6",
+    "aws-sdk-client-mock": "^3.0.0",
+    "aws-sdk-client-mock-jest": "^3.0.1",
+    "jest": "^29.2.2",
+    "nodemon": "^2.0.20"
+  }
+}

@@ -1,0 +1,1 @@
+exports.privacidade = require('./privacidade')

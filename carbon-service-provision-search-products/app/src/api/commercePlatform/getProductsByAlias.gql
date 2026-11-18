@@ -1,0 +1,94 @@
+query getProducts($value: [String!]!) {
+  products(filter: { url_key: { in: $value } }) {
+    items {
+      name
+      sku
+      url_key
+      categories {
+        name
+        icon_code
+        id
+      }
+      porto_services_coupons {
+        name
+        product_card_coupon_tag_text_color
+        product_card_coupon_tag_bg_color
+        product_page_coupon_description
+      }
+      porto_services_metadata {
+        id
+        product_front_name
+        product_type
+        max_services
+        is_new_product
+        is_offer_product
+        partner_product_id
+        service_type_id
+        charge_type_id
+        specialty_code
+        origin_code
+        problem
+        subject
+        combo_id
+        has_external_link_redirect
+        external_link_redirect
+        external_link_text
+        subitem_category
+        card_price {
+          title
+          title_with_html
+          discount {
+            text
+          }
+          installment {
+            text
+          }
+          benefits {
+            text
+            shop_window
+          }
+          label {
+            text
+            color
+            resume_price
+          }
+          old_price
+          final_price
+        }
+        thumbnail_url
+        alt_thumbnail_url
+        need_description
+      }
+      ... on BundleProduct {
+        items {
+          options {
+            uid
+            label
+            product {
+              name
+              sku
+              porto_services_metadata {
+                id
+                product_front_name
+                product_type
+                partner_product_id
+                service_type_id
+                charge_type_id
+                specialty_code
+                origin_code
+                problem
+                subject
+                card_price {
+                  final_price
+                }
+                combo_item_is_required
+                question_code
+                subitem_category
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

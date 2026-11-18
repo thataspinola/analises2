@@ -1,0 +1,1 @@
+exports.propostaCriticasApi = require('./propostaCriticasApi')

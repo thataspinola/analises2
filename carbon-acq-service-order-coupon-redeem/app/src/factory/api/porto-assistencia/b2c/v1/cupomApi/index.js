@@ -1,0 +1,1 @@
+exports.putConsumoEndpointFactory = require('./putConsumoEndpointFactory')

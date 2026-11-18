@@ -1,0 +1,1 @@
+exports.updateLeadController = require('./updateLeadController')

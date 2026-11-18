@@ -1,0 +1,8 @@
+exports.response = require('./responseFactory')
+exports.governancaDados = require('./governancaDados')
+exports.seguranca = require('./seguranca')
+exports.corporativo = require('./corporativo')
+exports.otpSenderControllerResponsePayload = require('./otpSenderControllerResponsePayloadFactory')
+exports.portais = require('./portais')
+exports.sqs = require('./sqs')
+exports.otpSenderInputDataPayloadFactory = require('./otpSenderInputDataPayloadFactory')

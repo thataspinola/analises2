@@ -1,0 +1,15 @@
+const loggerMocks = require('./logger/logger.mock')
+exports.CONTROLLER_PROCESSSNSSQSMESSAGE = require('./src/controller/processSnsSqsMessageController.mock')
+exports.FACTORY_CONTROLLER_GETSERVICEORDERDATA = require('./src/factory/controller/getServiceOrderData/index.mock')
+exports.FACTORY_CONTROLLER_SETSERVICEORDERCUSTOMERNOTIFYDATA = require('./src/factory/controller/setServiceOrderCustomerNotifyData/index.mocks')
+exports.SERVICE_VALIDATION = require('./src/service/validationService.mock')
+exports.API_SENDGRID_V3_MAIL = require('./src/api/sendgridApi/v3/mail/index.mock')
+exports.FACTORY_API_SENDGRID_V3_MAIL_POSTSENDPOINT = require('./src/factory/api/sendgridApi/v3/mail/postSendEndpointFactory.mock')
+exports.LOGGER = loggerMocks
+exports.SERVICE_LOGGER = loggerMocks
+exports.PROPERTY_PROCESSSNSSQSMESSAGESCHEMA = require('./src/property/processSnsSqsMessageSchema.mock')
+exports.FACTORY_AXIOSRESPONSEERRORDATA = require('./src/factory/axiosResponseErrorDataFactory.mock')
+exports.FACTORY_CONTROLLER_PROCESSSNSSQSMESSAGE_PROCESSEDDATAREPORT = require('./src/factory/controller/processSnsSqsMessage/processedDataReportFactory.mock')
+exports.FACTORY_CONTROLLER_PROCESSSNSSQSMESSAGE_RECEIVEDDATAREPORT = require('./src/factory/controller/processSnsSqsMessage/receivedDataReportFactory.mock')
+exports.HANDLER = require('./handler.mock')
+exports.SERVICE_ORDER_LAYER = require('./serviceOrderLayer.mock')

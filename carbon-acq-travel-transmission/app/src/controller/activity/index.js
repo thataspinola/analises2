@@ -1,0 +1,2 @@
+exports.getCertificate = require('./getCertificateActivity')
+

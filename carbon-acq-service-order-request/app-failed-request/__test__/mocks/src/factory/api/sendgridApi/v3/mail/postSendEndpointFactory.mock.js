@@ -1,0 +1,27 @@
+const MOCKS_CONTROLLER_FAILEDREQUEST = require('../../../../../controller/failedRequestController.mock')
+const CONSTANT = require('../../../../../../../../src/property')
+
+exports.PARSEDSQSMESSAGEPAYLOAD_VALID_INPUT = () => {
+	return MOCKS_CONTROLLER_FAILEDREQUEST.VALID_PARSEDJSONQUEUEMESSAGE_INPUT_PAYLOAD()
+}
+
+exports.VALID_RETURN = () => {
+	return {
+		personalizations: [
+			{
+				to: [
+					{
+						email:
+							MOCKS_CONTROLLER_FAILEDREQUEST.VALID_PARSEDJSONQUEUEMESSAGE_INPUT_PAYLOAD_INTEGRATIONDATA_CUSTOMER_EMAIL(),
+					},
+				],
+			},
+		],
+		from: {
+			email: CONSTANT.PORTOSERVICO_SERVICEORDER_MAIL_SENDER,
+			name: CONSTANT.PORTOSERVICO_SERVICEORDER_MAIL_SENDER_NAME,
+		},
+		subject: CONSTANT.PORTOSERVICO_SERVICEORDER_MAIL_FAILED_SUBJECT,
+		template_id: CONSTANT.PORTOSERVICO_SERVICEORDER_MAIL_FAILED_TEMPLATEID,
+	}
+}

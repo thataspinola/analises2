@@ -1,0 +1,1 @@
+exports.cupomApi = require('./cupomApi')

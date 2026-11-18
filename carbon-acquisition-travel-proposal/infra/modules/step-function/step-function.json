@@ -1,0 +1,138 @@
+{
+  "Comment": "Step Function que orquestra chamadas de cotação para o produto Vida-Viagem",
+  "StartAt": "Define Defaults",
+  "States": {
+    "Define Defaults": {
+      "Type": "Pass",
+      "Next": "Apply Defaults",
+      "ResultPath": "$.variablesDefaults",
+      "Parameters": {
+        "inputDefaults": {
+          "proposta": null,
+          "updateLead": null
+        }
+      }
+    },
+    "Apply Defaults": {
+      "Type": "Pass",
+      "ResultPath": "$.variablesDefaults",
+      "Parameters": {
+        "inputData.$": "States.JsonMerge($.variablesDefaults.inputDefaults, $$.Execution.Input, false)"
+      },
+      "Next": "Parallel Lead And Proposal"
+    },
+    "Parallel Lead And Proposal": {
+      "Type": "Parallel",
+      "InputPath": "$.variablesDefaults",
+      "Branches": [
+        {
+          "StartAt": "Do Update Lead",
+          "States": {
+            "Do Update Lead": {
+              "Type": "Choice",
+              "Choices": [
+                {
+                  "Variable": "$.inputData.updateLead",
+                  "IsNull": false,
+                  "Next": "Send Message To SQS Update Lead"
+                }
+              ],
+              "Default": "Success"
+            },
+            "Send Message To SQS Update Lead": {
+              "Type": "Task",
+              "TimeoutSeconds": 29500,
+              "Resource": "arn:aws:states:::sqs:sendMessage",
+              "Parameters": {
+                "QueueUrl": "https://sqs.${aws_region}.amazonaws.com/${account_id}/${queue_name}",
+                "MessageBody.$": "States.JsonToString($.inputData.updateLead)"
+              },
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "Next": "Fallback SQS Update Lead"
+                }
+              ],
+              "End": true
+            },
+            "Success": {
+              "Type": "Succeed"
+            },
+            "Fallback SQS Update Lead": {
+              "Type": "Pass",
+              "Result": "Hello, Erro ao enviar",
+              "End": true
+            }
+          }
+        },
+        {
+          "StartAt": "Invoke Travel Proposal",
+          "States": {
+            "Invoke Travel Proposal": {
+              "Type": "Task",
+              "Resource": "arn:aws:states:::lambda:invoke",
+              "TimeoutSeconds": 3000,
+              "Parameters": {
+                "Payload": {
+                  "proposta.$": "$.inputData.proposta"
+                },
+                "FunctionName": "arn:aws:lambda:ca-central-1:${account_id}:function:carbon-acquisition-travel-proposal:$LATEST"
+              },
+              "OutputPath": "$",
+              "ResultPath": "$.TravelProposalResponse",
+              "Catch": [
+                {
+                  "ErrorEquals": [
+                    "States.ALL"
+                  ],
+                  "Next": "Fallback Travel Proposal"
+                }
+              ],
+              "End": true
+            },
+            "Fallback Travel Proposal": {
+              "Type": "Pass",
+              "Parameters": {
+                "body": {
+                  "status": "Error",
+                  "message": "Error Invoke travel proposal"
+                },
+                "statusCode": 500
+              },
+              "ResultPath": "$.TravelProposalResponse.Payload",
+              "End": true
+            }
+          }
+        }
+      ],
+      "Next": "Validate Travel Proposal Result"
+    },
+    "Validate Travel Proposal Result": {
+      "Type": "Choice",
+      "InputPath": "$[1].TravelProposalResponse.Payload",
+      "Choices": [
+        {
+          "Variable": "$.statusCode",
+          "NumericEquals": 200,
+          "Next": "Success Travel Proposal"
+        }
+      ],
+      "Default": "Error Travel Proposal"
+    },
+    "Success Travel Proposal": {
+      "InputPath": "$.body",
+      "Type": "Pass",
+      "End": true
+    },
+    "Error Travel Proposal": {
+      "Type": "Pass",
+      "End": true,
+      "Parameters": {
+        "statusCode.$": "$.statusCode",
+        "message.$": "$.body"
+      }
+    }
+  }
+}

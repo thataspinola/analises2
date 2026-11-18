@@ -1,0 +1,1 @@
+exports.dynamoDb = require('./dynamoDb')

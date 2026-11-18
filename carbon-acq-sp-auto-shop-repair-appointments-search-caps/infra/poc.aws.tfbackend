@@ -1,0 +1,8 @@
+
+# ----------------------------------------------------------------
+# BACKEND CONFIG
+# ----------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/acquisition/service-provision/auto-shop-repair/appointments-search-caps/terraform.tfstate"
+region = "ca-central-1"

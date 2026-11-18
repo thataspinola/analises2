@@ -1,0 +1,57 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-support-abandoned-quotation",
+  "version": "1.0.0",
+  "description": "Função responsável por chamar atualização de lead quando a cotação foi abandonada",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "export NODE_ENV=local && node --inspect --watch-path=./ ./__test__/localRunner"
+  },
+  "author": "José Frederico Neto",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "pino": "^9.6.0"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  },
+  "engines": {
+    "node": ">=22.14.0"
+  },
+  "overrides": {
+    "jest": {
+      "@jest/core": {
+        "jest-haste-map": {
+          "picomatch": "^4.0.7",
+          "anymatch": {
+            "picomatch": "^4.0.7"
+          }
+        },
+        "@jest/reporters": {
+          "glob": {
+            "minimatch": {
+              "brace-expansion": "^2.1.2"
+            }
+          }
+        }
+      }
+    },
+    "glob": "^9.0.0",
+    "picomatch": "^4.0.7",
+    "chokidar": {
+      "braces": "^3.0.3"
+    },
+    "test-exclude": {
+      "minimatch": {
+        ".": "^3.1.5",
+        "brace-expansion": "^1.1.16"
+      }
+    },
+    "ajv": {
+      "fast-uri": "^3.1.6"
+    }
+  }
+}

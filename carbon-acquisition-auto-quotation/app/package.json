@@ -1,0 +1,35 @@
+{
+  "name": "@porto-seguro/hub-vendas.carbon-acquisition-auto-quotation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "export NODE_ENV=local && jest",
+    "tdd": "export NODE_ENV=local && jest --watch",
+    "coverage": "export NODE_ENV=local && npm test -- --coverage",
+    "dev": "NODE_ENV=local node --watch --inspect ./__test__/localRunner"
+  },
+  "author": "Carbon",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^2.1.1",
+    "axios": "^1.20.0",
+    "pino": "^10.3.1",
+    "uuid": "^11.1.1"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sqs": "^3.540.0",
+    "@porto-seguro/hub-vendas.carbon-token": "^2.18.0",
+    "aws-sdk-client-mock": "^3.0.0",
+    "jest": "^30.5.2",
+    "nodemon": "^3.1.14",
+    "patch-package": "^8.0.1"
+  },
+  "overrides": {        
+    "picomatch": "^4.0.7",           
+    "follow-redirects": "^1.16.1",   
+    "fast-uri": "^3.1.9",            
+    "brace-expansion": "^2.1.7"     
+  }
+}

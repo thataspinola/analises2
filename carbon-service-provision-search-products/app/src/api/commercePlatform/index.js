@@ -1,0 +1,1 @@
+exports.graphQlQuery = require('./graphQlQuery')

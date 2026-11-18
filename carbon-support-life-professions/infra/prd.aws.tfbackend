@@ -1,0 +1,3 @@
+bucket = "hub-vendas-terraform-prd"
+key = "acquisition/life-insurance/professions/terraform.tfstate"
+region = "ca-central-1"

@@ -1,0 +1,14 @@
+const MOCKS_CONTROLLER_FAILEDREQUEST = require('../../../../../controller/failedRequestController.mock')
+
+exports.PARSEDSQSMESSAGEPAYLOAD_VALID_INPUT = () => {
+	return MOCKS_CONTROLLER_FAILEDREQUEST.VALID_PARSEDJSONQUEUEMESSAGE_INPUT_PAYLOAD()
+}
+
+exports.VALID_RETURN = () => {
+	return {
+		transactionId:
+			MOCKS_CONTROLLER_FAILEDREQUEST.VALID_PARSEDJSONQUEUEMESSAGE_INPUT_PAYLOAD_TRANSACTIONID(),
+		canceled: true,
+		amount: 0,
+	}
+}

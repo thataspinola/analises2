@@ -1,0 +1,1 @@
+exports.processSnsSqsMessage = require('./processSnsSqsMessageController')

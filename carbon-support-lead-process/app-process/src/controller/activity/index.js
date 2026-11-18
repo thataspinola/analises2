@@ -1,0 +1,5 @@
+exports.getTokenCarbonCloud = require('./getTokenCarbonCloudActivity')
+exports.getTokenCloud = require('./getTokenCloudActivity')
+exports.validation = require('./validationActivity')
+exports.createLeadDynamics = require('./createLeadDynamicsActivity')
+exports.getCertificate = require('./getCertificateActivity')

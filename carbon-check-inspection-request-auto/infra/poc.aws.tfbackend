@@ -1,0 +1,7 @@
+# ------------------------------------------------------------
+# BACKEND CONFIG
+# ------------------------------------------------------------
+
+bucket = "hub-vendas-terraform-poc"
+key = "carbon/payments/inspection-status-evaluate-auto/terraform.tfstate"
+region = "ca-central-1"
