@@ -1,3 +1,12 @@
+exports.invalidRequest = () => ({
+	statusCode: 400,
+	body: {
+		status: 'error',
+		custom: false,
+		message: 'Invalid request body',
+	},
+})
+
 exports.systemUnavailable = (errorCode) => {
 	const response = {
 		statusCode: 500,

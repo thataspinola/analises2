@@ -3,6 +3,7 @@ const service = require('./src/service')
 const factory = require('./src/factory')
 const controller = require('./src/controller')
 const CONSTANTS = require('./src/property')
+const { ValidationError } = require('./src/error')
 
 module.exports.handler = async (event, context) => {
 	let currentActivity = CONSTANTS.MESSAGES.INDEX.START
@@ -12,14 +13,22 @@ module.exports.handler = async (event, context) => {
 	try{
 		service.logger.info({ requestId: logMetadata.traceId(context?.awsRequestId) }, CONSTANTS.MESSAGES.INDEX.INPUT_REQUEST)
 
-		if (typeof event.body !== 'string') {
-            throw new error.ValidationError(CONSTANTS.MESSAGES.INDEX.INVALID_BODY)
+		if (typeof event?.body !== 'string') {
+            throw new ValidationError(CONSTANTS.MESSAGES.INDEX.INVALID_BODY)
         }
 
 		currentActivity = CONSTANTS.MESSAGES.INDEX.CONVERTING_BODY
-		const inputData = JSON.parse(event.body)
+		let inputData
+		try {
+			inputData = JSON.parse(event.body)
+		} catch {
+			throw new ValidationError('Body must contain valid JSON')
+		}
+		if (inputData === null || typeof inputData !== 'object' || Array.isArray(inputData)) {
+			throw new ValidationError('Body must contain a JSON object')
+		}
 
-		currentActivity = CONSTANTS.MESSAGES.INDEX.PROCESSING_PROPOSAL
+		currentActivity = CONSTANTS.MESSAGES.INDEX.PROCESSING_QUOTATION
 		const quotation = await controller.quotation.getQuotation(inputData)
 
 		if (quotation.statusCode == 200) {
@@ -47,7 +56,9 @@ module.exports.handler = async (event, context) => {
 			log.carbonErrorData.currentActivity
 		)
 
-		const httpErrorData = factory.responseError.UnknownError()
+		const httpErrorData = ex instanceof ValidationError
+			? factory.responseError.invalidRequest()
+			: factory.responseError.UnknownError()
 		responseBody = JSON.stringify(httpErrorData.body)
 		responseStatusCode = httpErrorData.statusCode
 	}

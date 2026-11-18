@@ -4,6 +4,7 @@ const service = require('../service')
 const factory = require('../factory')
 const CONSTANTS = require('../property')
 const layerToken = require(CONSTANTS.TOKEN_LIBRARY_LOCATION)
+const { ValidationError } = require('../error')
 
 exports.getQuotation = async (data) => {
 	try {
@@ -31,12 +32,12 @@ exports.getQuotation = async (data) => {
             }
         }
 
-        if (ex.name == 'ValidationError') {
+        if (ex instanceof ValidationError) {
 			service.logger.warn(
                 log,
                 log.carbonErrorData.currentActivity
             )
-            return factory.responseError.UnknownError()
+            return factory.responseError.invalidRequest()
 		}
 
         service.logger.error(
@@ -63,7 +64,7 @@ const validationService = (data, schema) => {
             }
         }
 
-        if (ex.name == 'ValidationError') {
+        if (ex instanceof ValidationError) {
 			service.logger.warn(
                 log,
                 log.carbonErrorData.currentActivity
