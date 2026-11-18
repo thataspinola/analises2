@@ -13,7 +13,7 @@ vpc_security_group_id                   = ["sg-0ad1f2aac66e82610"]
 lambda_timeout                          = 29
 lambda_timeout_sender                   = 120
 lambda_cloudwatch_log_retention         = 3
-sender_queue_visibility_timeout_seconds = 60
+sender_queue_visibility_timeout_seconds = 720
 dlq_message_retention_days              = 5
 
 # Application parameters
