@@ -2,7 +2,6 @@ const { abandonedQuotationController } = require('../../../src/controller')
 const { updateLeadFactory } = require('../../../src/factory')
 const {
 	VALID_INPUT_DATA,
-	CONTROLLER_SUCCESS_RESPONSE,
 	FACTORY_SUCCESS_RESPONSE,
 	API_SUCCESS_RESPONSE,
 } = require('../../mocks/index.mock')
