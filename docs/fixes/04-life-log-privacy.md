@@ -38,7 +38,7 @@ válidos e status técnico. Os novos logs de erro usam a mensagem fixa
 `Operation failed`; o detalhe operacional fica nos metadados estruturados.
 
 Cada ZIP Lambda carrega sua própria cópia do helper, evitando imports fora do
-artefato. As três cópias são exercitadas pela mesma suíte parametrizada.
+artefato. A suíte original foi separada em pacotes locais de validação; cada miniprojeto testa apenas seus próprios arquivos.
 Nenhuma dependência de produção foi adicionada ou atualizada.
 
 ## Cuidados de implementação
@@ -96,3 +96,11 @@ resposta e contratos HTTP seguem o tratamento existente, a revisar no item 6.
 
 - [AWS — execution logging e data tracing](https://docs.aws.amazon.com/apigateway/latest/developerguide/rest-api-execution-logging.html)
 - [Pino — redação de campos](https://github.com/pinojs/pino/blob/main/docs/redaction.md)
+
+## Reorganização para miniprojetos independentes
+
+A pasta externa `validation/logging` foi removida. Agora cada projeto tem `validation/logging` com suíte, manifesto e lockfile próprios, além de `docs/fixes/04-life-log-privacy.md`. Os resultados de 54 testes acima são históricos, anteriores à reorganização. As suítes separadas ainda precisam ser executadas; o executor estava indisponível nesta revisão.
+
+- [carbon-acquisition-life-quotation](../../carbon-acquisition-life-quotation/docs/fixes/04-life-log-privacy.md)
+- [carbon-acq-life-proposal-opening](../../carbon-acq-life-proposal-opening/docs/fixes/04-life-log-privacy.md)
+- [carbon-acq-life-proposal-confirmation](../../carbon-acq-life-proposal-confirmation/docs/fixes/04-life-log-privacy.md)

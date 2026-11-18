@@ -30,4 +30,4 @@ do workflow; não acrescenta dependências à Lambda de proposta.
 
 Validar o plano Terraform e o comportamento efetivo de Step Functions/API
 Gateway na VDI/HML antes de implantar. Ver
-[correção do item 3](../docs/fixes/03-travel-proposal-sqs-failure.md).
+[correção do item 3](docs/fixes/03-travel-proposal-sqs-failure.md).

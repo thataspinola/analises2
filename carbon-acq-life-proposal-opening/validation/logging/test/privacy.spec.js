@@ -4,12 +4,10 @@ import { fileURLToPath } from 'node:url'
 import { createRequire } from 'node:module'
 import vm from 'node:vm'
 import { describe, expect, test, vi } from 'vitest'
-import pino6 from 'pino6'
-import pino8 from 'pino8'
-import pino10 from 'pino10'
+import pino from 'pino10'
 
 const nativeRequire = createRequire(import.meta.url)
-const repository = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
+const project = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..')
 const TRACE = 'f47ac10b-58cc-4372-a567-0e02b2c3d479'
 const QUOTATION = '1234567890'
 const PRIVATE = {
@@ -21,11 +19,7 @@ const PRIVATE = {
   token: 'synthetic-super-secret-token',
   certificate: 'synthetic-private-certificate',
 }
-const apps = [
-  { root: 'carbon-acq-life-proposal-confirmation', kind: 'confirmation', pino: pino8 },
-  { root: 'carbon-acq-life-proposal-opening', kind: 'opening', pino: pino10 },
-  { root: 'carbon-acquisition-life-quotation', kind: 'quotation', pino: pino6 },
-]
+const apps = [{ kind: 'opening', pino }]
 
 function makeError(name = 'AxiosError') {
   const error = new Error(JSON.stringify(PRIVATE))
@@ -41,7 +35,7 @@ function makeError(name = 'AxiosError') {
 // Execute the original CommonJS modules with real Pino sinks and only external
 // integrations/validation replaced. No application logs are mocked or suppressed.
 function runtime(app, overrides = {}) {
-  const directory = path.join(repository, app.root, 'app')
+  const directory = path.join(project, 'app')
   const cache = new Map()
   const lines = []
   const token = {
@@ -100,7 +94,7 @@ function assertPrivateValuesAbsent(lines) {
   return lines.flatMap((line) => line.trim().split('\n').map(JSON.parse))
 }
 
-describe.each(apps)('$root log privacy', (app) => {
+describe.each(apps)('$kind log privacy', (app) => {
   test('summarizes errors without copying messages, stack, HTTP bodies, headers or certificates', () => {
     const rt = runtime(app)
     const summary = rt.metadata().errorSummary(makeError())
@@ -247,34 +241,18 @@ describe.each(apps)('$root log privacy', (app) => {
   })
 
   test('disables full request/response payload tracing in its API Gateway', () => {
-    const infrastructure = readFileSync(path.join(repository, app.root, 'infra/modules/api-gateway/main.tf'), 'utf8')
+    const infrastructure = readFileSync(path.join(project, 'infra/modules/api-gateway/main.tf'), 'utf8')
     expect(infrastructure).toMatch(/data_trace_enabled\s*=\s*false/)
     expect(infrastructure).toMatch(/metrics_enabled\s*=\s*true/)
   })
 })
 
 test('opening controller never logs the converted proposal payload', async () => {
-  const app = apps.find((app) => app.kind === 'opening')
+  const app = apps[0]
   const rt = runtime(app)
   const input = { ...PRIVATE }
   expect((await rt.load('src/controller/index.js').proposalController.process(input, QUOTATION, TRACE)).statusCode).toBe(204)
   expect(rt.axios.mock.calls[0][0].data).toEqual(input)
   const entries = assertPrivateValuesAbsent(rt.lines)
   expect(JSON.stringify(entries)).toContain(TRACE)
-})
-
-test('quotation rejection and unmapped codes never log birth dates, response bodies or arbitrary text', async () => {
-  const app = apps.find((app) => app.kind === 'quotation')
-  const rt = runtime(app)
-  rt.axios.mockResolvedValue({ status: 503, data: { ...PRIVATE, codigo: PRIVATE.token } })
-  await rt.load('src/controller/index.js').quotation.getQuotation({ lifeinsurance: { date_of_birth: PRIVATE.dateOfBirth } })
-  assertPrivateValuesAbsent(rt.lines)
-})
-
-test('confirmation certificate retrieval failure does not log certificate material', async () => {
-  const app = apps.find((app) => app.kind === 'confirmation')
-  const rt = runtime(app)
-  rt.token.getPortoCertificates.mockRejectedValue(makeError())
-  expect((await rt.load('src/controller/index.js').proposalController.process({}, TRACE, QUOTATION)).statusCode).toBe(500)
-  assertPrivateValuesAbsent(rt.lines)
 })

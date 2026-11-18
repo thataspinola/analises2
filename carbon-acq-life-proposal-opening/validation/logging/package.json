@@ -1,0 +1,17 @@
+{
+  "name": "carbon-life-logging-validation",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "5.1.1",
+    "pino6": "npm:pino@6.4.1",
+    "pino8": "npm:pino@8.15.1",
+    "pino10": "npm:pino@10.3.1"
+  }
+}
