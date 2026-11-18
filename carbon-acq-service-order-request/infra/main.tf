@@ -18,7 +18,7 @@ provider "aws" {
 module "failed_request_queue" {
   source                                           = "./modules/failed-request-queue"
   cloudwatch_metric_alarm_evaluation_periods_count = var.dead_letter_cloudwatch_metric_alarm_evaluation_periods_count
-  message_visibility_timeout_seconds               = var.queue_message_visibility_timeout_seconds
+  message_visibility_timeout_seconds               = module.queue_timeout_policy.visibility_timeout_seconds
   message_retention_days                           = var.dead_letter_message_retention_days
 }
 
@@ -26,7 +26,7 @@ module "request_queue" {
   source                                   = "./modules/request-queue"
   queue_dead_letter_arn                    = module.failed_request_queue.queue_arn
   message_redrive_policy_max_receive_count = var.queue_message_redrive_policy_max_receive_count
-  message_visibility_timeout_seconds       = var.queue_message_visibility_timeout_seconds
+  message_visibility_timeout_seconds       = module.queue_timeout_policy.visibility_timeout_seconds
   depends_on = [
     module.failed_request_queue
   ]
@@ -177,4 +177,10 @@ module "requested_sns_topic_policies" {
   source     = "./modules/requested-sns-topic-policies"
   topic_arn  = module.requested_sns_topic.topic_arn
   account_id = var.account_id
+}
+
+module "queue_timeout_policy" {
+  source                     = "./modules/queue-timeout-policy"
+  lambda_timeout_seconds     = var.lambda_timeout
+  visibility_timeout_seconds = var.queue_message_visibility_timeout_seconds
 }

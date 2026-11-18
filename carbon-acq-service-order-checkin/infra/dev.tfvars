@@ -10,7 +10,7 @@ vpc_security_group_id                    = ["sg-0ad1f2aac66e82610"]
 lambda_timeout                           = 25
 lambda_cloudwatch_log_retention          = 3
 queue_dead_letter_message_retention_days = 3
-queue_visibility_timeout_seconds         = 30
+queue_visibility_timeout_seconds         = 150
 
 # Application parameters
 NODE_ENV                                    = "development"

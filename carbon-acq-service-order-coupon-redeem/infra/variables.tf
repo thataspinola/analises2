@@ -97,7 +97,7 @@ variable "queue_dead_letter_message_retention_days" {
 }
 
 variable "queue_visibility_timeout_seconds" {
-  type        = string
+  type        = number
   description = "queue visibility timeout in seconds"
 }
 
