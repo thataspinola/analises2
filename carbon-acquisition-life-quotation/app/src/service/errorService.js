@@ -1,3 +1,4 @@
+const logMetadata = require('./logMetadata')
 const factory = require('../factory')
 const service = require('../service')
 
@@ -30,7 +31,7 @@ exports.filterError = (errorCode) => {
 		case 'OR20':
 			return factory.responseError.UnableCompleteQuotation(errorCode)
 		default:
-			service.logger.error(`Codigo de erro não mapeado: ${errorCode} `)
+			service.logger.error({ code: logMetadata.errorCode(errorCode) }, 'Unmapped life quotation error code')
 			return factory.responseError.UnknownError(errorCode)
 	}
 }

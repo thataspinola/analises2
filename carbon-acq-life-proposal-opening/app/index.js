@@ -1,3 +1,4 @@
+const logMetadata = require('./src/service/logMetadata')
 const controller = require('./src/controller')
 const factory = require('./src/factory')
 const error = require('./src/error')
@@ -13,10 +14,10 @@ const CONSTANT = require('./src/property')
  *
  * @param {Object} event - O evento que contém os dados de entrada.
  * @param {string} event.body - O corpo do evento que deve ser uma string JSON representando os dados da proposta.
- * 
- * @returns {Promise<Object>} - Retorna uma promessa que resolve para um objeto de resposta da API, 
+ *
+ * @returns {Promise<Object>} - Retorna uma promessa que resolve para um objeto de resposta da API,
  * contendo o status HTTP e, se aplicável, uma mensagem de sucesso ou erro.
- * 
+ *
  */
 const lambdaHandler = async (event) => {
 	const traceId = factory.trace.createdTraceId(event)
@@ -34,32 +35,30 @@ const lambdaHandler = async (event) => {
         const inputFormData = JSON.parse(event.body)
 
         quotationId = inputFormData?.lifeinsurance?.porto_quotation_id
-
-        const maskInputEnvet = maskInput(inputFormData, traceId, quotationId)
-        service.logger.info({ Event: maskInputEnvet, status: CONSTANT.MESSAGES.INDEX.INPUT_REQUEST })
+        service.logger.info({ traceId: logMetadata.traceId(traceId), quotationId: logMetadata.quotationId(quotationId) }, CONSTANT.MESSAGES.INDEX.INPUT_REQUEST)
 
         currentActivity = CONSTANT.MESSAGES.INDEX.PROCESSING_PROPOSAL
         const requestData = await controller.proposalController.process(inputFormData, quotationId, traceId)
 
-        service.logger.info({ quotationId, status: CONSTANT.MESSAGES.INDEX.SUCCESS })
+        service.logger.info({ traceId: logMetadata.traceId(traceId), quotationId: logMetadata.quotationId(quotationId), statusCode: logMetadata.httpStatus(requestData.statusCode) }, CONSTANT.MESSAGES.INDEX.SUCCESS)
 
         responseBody = JSON.stringify(requestData.body)
 		responseStatusCode = requestData.statusCode
 
     } catch (ex) {
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'handler',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
             }
         }
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
         const httpErrorData = factory.response.error(ex.message)
@@ -75,47 +74,6 @@ const lambdaHandler = async (event) => {
 	}
 
 	return response
-}
-
-const maskInput = (inputEvent, traceId, quotationId) => {
-    try {
-        const clonedInputEvent = JSON.parse(JSON.stringify(inputEvent))
-
-        const maskedClient = {
-            ...clonedInputEvent.lifeinsurance.client,
-            cpf: service.dataMask.maskCpf(clonedInputEvent.lifeinsurance.client.cpf),
-            email: service.dataMask.maskEmail(clonedInputEvent.lifeinsurance.client.email),
-            cellPhone: service.dataMask.maskPhoneBrazil(clonedInputEvent.lifeinsurance.client.cellPhone),
-            name: service.dataMask.maskName(clonedInputEvent.lifeinsurance.client.name),
-        }
-
-        const maskedPep = {
-            cpf: service.dataMask.maskCpf(clonedInputEvent.lifeinsurance.personPep.cpf),
-            name: service.dataMask.maskName(clonedInputEvent.lifeinsurance.personPep.name)
-        }
-
-        clonedInputEvent.lifeinsurance.client = maskedClient
-        clonedInputEvent.lifeinsurance.personPep = maskedPep
-
-        return clonedInputEvent
-
-    } catch (ex) {
-        const log = {
-            rawError: ex,
-            carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
-                layer: 'handler',
-                currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
-            }
-        }
-
-        service.logger.warn(
-            log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
-        )
-        return 'N/A'
-    }
 }
 
 module.exports.handler = lambdaHandler

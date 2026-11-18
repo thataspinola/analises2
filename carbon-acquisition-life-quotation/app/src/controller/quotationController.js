@@ -1,3 +1,4 @@
+const logMetadata = require('../service/logMetadata')
 const api = require('../api')
 const service = require('../service')
 const factory = require('../factory')
@@ -7,10 +8,10 @@ const layerToken = require(CONSTANTS.TOKEN_LIBRARY_LOCATION)
 exports.getQuotation = async (data) => {
 	try {
 		validationService(data, CONSTANTS.QUOTATION_SCHEMA)
-		
+
         const token = await layerToken.getSensediaTokenCarbonCloud()
 		const quotationResponse = await api.vidaOnApi.ofertas(data, token)
-        
+
 		switch (quotationResponse.status) {
 			case 201:
 				return factory.responseSuccess.quotationSuccess(
@@ -18,35 +19,29 @@ exports.getQuotation = async (data) => {
 					data.lifeinsurance.date_of_birth
 				)
 			default:
-				service.logger.error(
-					`Error getting quotation for input ${
-						data.lifeinsurance.date_of_birth
-					} - response: ${JSON.stringify(quotationResponse)}`
-				)
+				service.logger.error({ statusCode: logMetadata.httpStatus(quotationResponse.status) }, 'Life quotation upstream rejected the request')
 				return service.error.filterError(quotationResponse?.data?.codigo)
 		}
 	} catch (ex) {
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: ``,
                 layer: 'QuotationController',
                 currentActivity: `Erro identificado durante a atividade de obter cotação`,
-                errorMessage: ex.message
             }
         }
 
         if (ex.name == 'ValidationError') {
 			service.logger.warn(
                 log,
-                `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+                log.carbonErrorData.currentActivity
             )
             return factory.responseError.UnknownError()
 		}
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
 		return factory.responseError.UnknownError()
@@ -61,24 +56,22 @@ const validationService = (data, schema) => {
         service.validation.inputData(data, schema)
     }catch(ex){
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: ``,
                 layer: 'QuotationController',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
             }
         }
 
         if (ex.name == 'ValidationError') {
 			service.logger.warn(
                 log,
-                `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+                log.carbonErrorData.currentActivity
             )
 		}else{
             service.logger.error(
                 log,
-                `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+                log.carbonErrorData.currentActivity
             )
         }
         throw ex
