@@ -1,8 +1,15 @@
-#set($inputRoot = $input.path('$'))
-#if($inputRoot.toString().contains('output='))
-#set ($parsedPayloadJson = $util.parseJson($input.json('$.output')))
-#elseif($inputRoot.toString().contains('cause='))
-#set ($parsedPayloadJson = $util.parseJson($input.json('$.cause')))
+#set($execution = $input.path('$'))
+#set($responseStatus = 500)
+#set($responseBody = '{"statusCode":500,"message":"Unable to complete travel proposal."}')
+#if($execution.status == "SUCCEEDED" && $execution.output)
+#set($parsedOutput = $util.parseJson($execution.output))
+#if($parsedOutput)
+#set($responseBody = $execution.output)
+#set($responseStatus = 200)
+#if($parsedOutput.statusCode)
+#set($responseStatus = $parsedOutput.statusCode)
 #end
-#set ($context.responseOverride.status = $util.parseJson($parsedPayloadJson).statusCode)
-$parsedPayloadJson
+#end
+#end
+#set($context.responseOverride.status = $responseStatus)
+$responseBody

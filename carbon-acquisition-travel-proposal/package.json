@@ -1,0 +1,17 @@
+{
+  "name": "carbon-travel-workflow-validation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Offline regression checks for travel proposal workflow and API response mapping",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "asl-validator": "4.0.0",
+    "velocityjs": "2.1.7",
+    "vitest": "5.1.1"
+  }
+}

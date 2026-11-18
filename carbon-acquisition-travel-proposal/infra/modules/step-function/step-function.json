@@ -61,9 +61,9 @@
               "Type": "Succeed"
             },
             "Fallback SQS Update Lead": {
-              "Type": "Pass",
-              "Result": "Hello, Erro ao enviar",
-              "End": true
+              "Type": "Fail",
+              "Error": "UpdateLeadEnqueueFailed",
+              "Cause": "Unable to enqueue the lead update."
             }
           }
         },
