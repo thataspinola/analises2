@@ -78,6 +78,13 @@ resource "aws_api_gateway_method_response" "status_200" {
   status_code = "200"
 }
 
+resource "aws_api_gateway_method_response" "status_500" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway.id
+  resource_id = aws_api_gateway_rest_api.api_gateway.root_resource_id
+  http_method = aws_api_gateway_method.api_gateway_method.http_method
+  status_code = "500"
+}
+
 data "template_file" "response_templates" {
   template = file("${path.module}/template.vtl")
 }
@@ -117,6 +124,7 @@ resource "aws_api_gateway_deployment" "api_gateway_deployment" {
       var.http_method,
       var.step_function_invoke_arn,
       sha1(jsonencode(aws_api_gateway_method_response.status_200)),
+      sha1(jsonencode(aws_api_gateway_method_response.status_500)),
       sha1(jsonencode(aws_api_gateway_integration_response.response)),
       sha1(jsonencode(aws_api_gateway_integration.api_gateway_integration)),
       sha1(jsonencode(aws_api_gateway_rest_api.api_gateway)),

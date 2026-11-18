@@ -1,5 +1,7 @@
 # Resumo da auditoria de lambdas
 
+> **Item 3 corrigido no código (18/11/2026):** falha SQS na proposta de viagem encerra o workflow em FAILED e retorna HTTP 500 pela API, sem expor a causa interna. Os 22 testes locais passaram; validação AWS pendente. [Detalhes](../../docs/fixes/03-travel-proposal-sqs-failure.md). A tabela original abaixo preserva o diagnóstico anterior.
+
 > **Item 2 corrigido no código (18/11/2026):** fila OTP com visibilidade de 720 s em DEV/HML e 540 s em POC/PRD, proteção de seis vezes o timeout e 15 testes da política passando. Validação AWS pendente. [Detalhes](../../docs/fixes/02-otp-sender-visibility.md). A tabela original abaixo preserva o diagnóstico anterior.
 
 > **Item 1 corrigido no código (18/11/2026):** abandono de cotação passa a reportar o checkpoint com falha ao DynamoDB Stream. As linhas da tabela abaixo são o diagnóstico original. [Validação e limitações](../../docs/fixes/01-abandoned-quotation-stream.md). O acompanhamento dos demais itens está nas notas de atualização.
