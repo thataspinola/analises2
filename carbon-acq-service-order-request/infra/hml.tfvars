@@ -11,7 +11,7 @@ vpc_security_group_id                          = ["sg-092a9370a4841a36c"]
 lambda_timeout                                 = 30
 lambda_cloudwatch_log_retention                = 60
 dead_letter_message_retention_days             = 5
-queue_message_visibility_timeout_seconds       = 30
+queue_message_visibility_timeout_seconds       = 180
 queue_message_redrive_policy_max_receive_count = 3
 lambda_max_memory_size                         = 640
 

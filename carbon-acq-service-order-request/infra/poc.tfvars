@@ -11,7 +11,7 @@ vpc_security_group_id                          = ["sg-0918bc7be0d05df35"]
 lambda_timeout                                 = 29
 lambda_cloudwatch_log_retention                = 14
 dead_letter_message_retention_days             = 2
-queue_message_visibility_timeout_seconds       = 30
+queue_message_visibility_timeout_seconds       = 174
 queue_message_redrive_policy_max_receive_count = 3
 dynatrace_oneAgent_layer_arn                   = "arn:aws:lambda:ca-central-1:725887861453:layer:Dynatrace_OneAgent_1_287_2_20240223-044013_nodejs:1"
 
