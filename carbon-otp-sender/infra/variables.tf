@@ -147,7 +147,7 @@ locals {
 
 # ---- WITHOUT Default Value ----
 variable "sender_queue_visibility_timeout_seconds" {
-  type        = string
+  type        = number
   description = "sender queue visibility timeout in seconds"
 }
 
