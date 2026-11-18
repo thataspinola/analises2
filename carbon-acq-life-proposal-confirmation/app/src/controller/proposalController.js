@@ -1,3 +1,4 @@
+const logMetadata = require('../service/logMetadata')
 const CONSTANT = require('./../property')
 const service = require('./../service')
 const tokenLayer = require(CONSTANT.TOKEN_LIBRARY_LOCATION)
@@ -21,26 +22,26 @@ exports.process = async (inputData, traceId, quotationId) => {
 		return factory.response.success(apiResponseData)
 	} catch (ex) {
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'ProposalController',
                 currentActivity: `Erro identificado durante a atividade de abertura de proposta`,
-                errorMessage: ex.message
             }
         }
 
         if (ex.name == 'ValidationError') {
 			service.logger.warn(
                 log,
-                `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+                log.carbonErrorData.currentActivity
             )
             return factory.response.badRequestError(ex.message)
 		}
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
         return factory.response.error(ex.message)
@@ -54,25 +55,25 @@ const validationService = (inputData, traceId, quotationId) =>{
 		service.validationService.inputData(inputData, CONSTANT.PROPOSAL_SCHEMA)
 	}catch(ex){
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'ProposalController',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
             }
         }
 
         if (ex.name == 'ValidationError') {
 			service.logger.warn(
                 log,
-                `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+                log.carbonErrorData.currentActivity
             )
 		}
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
         throw ex
@@ -84,25 +85,25 @@ const getApiGatewayTokens = async (traceId, quotationId) =>{
     try{
         currentActivity = CONSTANT.MESSAGES.PROPOSAL_CONTROLLER.GETTING_TOKEN
         const tokenSensediaCloudInternal = await tokenLayer.getSensediaTokenCarbonCloudInternal()
-        
+
         currentActivity = CONSTANT.MESSAGES.PROPOSAL_CONTROLLER.GETTING_CERTIFICATES
 		const certificates = await tokenLayer.getPortoCertificates()
 
         return { tokenSensediaCloudInternal, certificates}
     }catch(ex){
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'ProposalController',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
             }
         }
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
         throw ex
@@ -111,7 +112,7 @@ const getApiGatewayTokens = async (traceId, quotationId) =>{
 
 const proposalConfirmation = async (inputData, token, certificates, traceId, quotationId) =>{
 	let currentActivity = ''
-    
+
     try{
         currentActivity = CONSTANT.MESSAGES.PROPOSAL_CONTROLLER.POSTTING_PROPOSAL_CONFIRMATION
         const apiResponseData = await api.vidaon.v1.proposta.confirmation.Post(
@@ -125,18 +126,18 @@ const proposalConfirmation = async (inputData, token, certificates, traceId, quo
 		return apiResponseData
     }catch(ex){
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'ProposalController',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: ex.message
             }
         }
-        
+
         service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
         throw ex
     }

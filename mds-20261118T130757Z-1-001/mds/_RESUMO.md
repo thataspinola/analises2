@@ -1,5 +1,7 @@
 # Resumo da auditoria de lambdas
 
+> **Item 4 — lote Vida corrigido no código (18/11/2026):** cotação, abertura e confirmação com logs minimizados, proteção de erros e data tracing de payload desativado. Os 54 testes de privacidade passaram. Demais aplicações fora deste lote; validação HML pendente. [Detalhes](../../docs/fixes/04-life-log-privacy.md).
+
 > **Item 3 corrigido no código (18/11/2026):** falha SQS na proposta de viagem encerra o workflow em FAILED e retorna HTTP 500 pela API, sem expor a causa interna. Os 22 testes locais passaram; validação AWS pendente. [Detalhes](../../docs/fixes/03-travel-proposal-sqs-failure.md). A tabela original abaixo preserva o diagnóstico anterior.
 
 > **Item 2 corrigido no código (18/11/2026):** fila OTP com visibilidade de 720 s em DEV/HML e 540 s em POC/PRD, proteção de seis vezes o timeout e 15 testes da política passando. Validação AWS pendente. [Detalhes](../../docs/fixes/02-otp-sender-visibility.md). A tabela original abaixo preserva o diagnóstico anterior.

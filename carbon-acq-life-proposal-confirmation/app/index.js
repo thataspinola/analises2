@@ -1,3 +1,4 @@
+const logMetadata = require('./src/service/logMetadata')
 const controller = require('./src/controller')
 const factory = require('./src/factory')
 const service = require('./src/service')
@@ -16,36 +17,34 @@ const lambdaHandler = async (event) => {
 			throw new error.ValidationError(CONSTANT.MESSAGES.INDEX.INVALID_BODY)
 		}
 
-		service.logger.info(`${event.body} - ${CONSTANT.MESSAGES.INDEX.INPUT_REQUEST}`)
+		service.logger.info({ traceId: logMetadata.traceId(traceId) }, CONSTANT.MESSAGES.INDEX.INPUT_REQUEST)
 
 		currentActivity = CONSTANT.MESSAGES.INDEX.CONVERTING_BODY
 		const parsedInput = JSON.parse(event.body)
 
 		quotationId = parsedInput?.numeroOrcamento
-		
+
 		currentActivity = CONSTANT.MESSAGES.INDEX.PROCESSING_PROPOSAL
 		const proposalControllerResponse =
 			await controller.proposalController.process(parsedInput, traceId, quotationId)
 
-		service.logger.info(
-			`QuotationId:${quotationId} 
-			Reponse: ${proposalControllerResponse} - ${CONSTANT.MESSAGES.INDEX.SUCCESS}`)
+		service.logger.info({ traceId: logMetadata.traceId(traceId), quotationId: logMetadata.quotationId(quotationId), statusCode: logMetadata.httpStatus(proposalControllerResponse.statusCode) }, CONSTANT.MESSAGES.INDEX.SUCCESS)
 
 		responseBody = JSON.stringify(proposalControllerResponse.body)
 		responseStatusCode = proposalControllerResponse.statusCode
 	} catch (ex) {
         const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'ProposalController',
                 currentActivity: `Erro identificado durante a atividade de abertura de proposta`,
-                errorMessage: ex.message
             }
         }
 		service.logger.error(
             log,
-            `${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}` 
+            log.carbonErrorData.currentActivity
         )
 
 		let  httpErrorData
@@ -55,7 +54,7 @@ const lambdaHandler = async (event) => {
 		}else{
 			httpErrorData = factory.response.error(ex.message)
 		}
-        
+
 		responseBody = JSON.stringify(httpErrorData.body)
 		responseStatusCode = httpErrorData.statusCode
     }
