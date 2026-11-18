@@ -1,142 +1,128 @@
 const { abandonedQuotationController } = require('../src/controller')
 const { logger } = require('../src/service')
+const { ValidationError } = require('../src/error')
 const { handler } = require('..')
 
-const {
-	CONTROLLER_SUCCESS_RESPONSE,
-	VALID_INPUT_DATA,
-} = require('./mocks/index.mock')
+jest.mock('../src/controller', () => ({
+	abandonedQuotationController: { process: jest.fn() },
+}))
+jest.mock('../src/service', () => ({
+	logger: { error: jest.fn() },
+}))
 
-jest.mock('../src/controller')
-jest.mock('pino', () => {
-	const info = jest.fn()
-	const error = jest.fn()
-	const warn = jest.fn()
-	const debug = jest.fn()
-	const silent = jest.fn() // 'silent' log level is also a method in newer versions
-	const child = jest.fn(() => ({ info, error, warn, debug, silent, child })) // child returns a logger instance
-
-	return () => ({
-		info,
-		error,
-		warn,
-		debug,
-		silent,
-		child,
-	})
+const makeRecord = (sequenceNumber) => ({
+	eventID: `event-${sequenceNumber}`,
+	eventName: 'REMOVE',
+	dynamodb: {
+		SequenceNumber: sequenceNumber,
+		OldImage: {
+			vdoCode: { S: `lead-${sequenceNumber}` },
+			expireAt: { N: '1700000000' },
+		},
+	},
 })
 
-afterEach(() => {
-	jest.clearAllMocks()
-})
-
-describe('Suite de teste de index.test.js', () => {
-	describe('Quando sucesso', () => {
-		test('Deve invocar o controller somente uma vez e com as informações informadas na entrada', async () => {
-			const spyController = jest
-				.spyOn(abandonedQuotationController, 'process')
-				.mockReturnValue(CONTROLLER_SUCCESS_RESPONSE)
-
-			await handler(VALID_INPUT_DATA)
-
-			expect(spyController).toHaveBeenCalled()
-			expect(spyController).toHaveBeenCalledTimes(1)
-			expect(spyController).toHaveBeenCalledWith(VALID_INPUT_DATA)
-		})
-
-		test('Deve retornar um objeto de resposta no padrão esperado', async () => {
-			const response = await handler(VALID_INPUT_DATA)
-
-			expect(response).toHaveProperty('isBase64Encoded')
-			expect(typeof response.isBase64Encoded).toBe('boolean')
-			expect(response).toHaveProperty('headers')
-			expect(typeof response.headers).toBe('object')
-			expect(response).toHaveProperty('statusCode')
-			expect(typeof response.statusCode).toBe('number')
-			expect(response).toHaveProperty('body')
-			expect(typeof response.body).toBe('string')
-
-			const body = JSON.parse(response.body)[0]
-
-			expect(body).toHaveProperty('statusCode')
-			expect(typeof body.statusCode).toBe('number')
-			expect(body).toHaveProperty('statusMessage')
-			expect(typeof body.statusMessage).toBe('string')
-		})
+describe('DynamoDB Stream abandoned quotation handler', () => {
+	beforeEach(() => {
+		jest.resetAllMocks()
+		abandonedQuotationController.process.mockResolvedValue([{ updated: true }])
 	})
 
-	describe('Quando falha', () => {
-		test('Deve invocar o controller somente uma vez e com as informações informadas na entrada', async () => {
-			const spyController = jest
-				.spyOn(abandonedQuotationController, 'process')
-				.mockImplementation(() => {
-					throw new Error()
-				})
-
-			await handler(VALID_INPUT_DATA)
-
-			expect(spyController).toHaveBeenCalled()
-			expect(spyController).toHaveBeenCalledTimes(1)
-			expect(spyController).toHaveBeenCalledWith(VALID_INPUT_DATA)
-		})
-
-		test('Deve retornar um objeto de resposta de erro no padrão esperado', async () => {
-			jest
-				.spyOn(abandonedQuotationController, 'process')
-				.mockImplementation(() => {
-					throw new Error()
-				})
-
-			const response = await handler(VALID_INPUT_DATA)
-
-			expect(response).toHaveProperty('isBase64Encoded')
-			expect(typeof response.isBase64Encoded).toBe('boolean')
-			expect(response).toHaveProperty('headers')
-			expect(typeof response.headers).toBe('object')
-			expect(response).toHaveProperty('statusCode')
-			expect(typeof response.statusCode).toBe('number')
-			expect(response.statusCode).toBe(500)
-			expect(response).toHaveProperty('body')
-			expect(typeof response.body).toBe('string')
-			const errorBody = JSON.parse(response.body)
-			expect(errorBody).toHaveProperty('status')
-			expect(errorBody.status).toBe('error')
-			expect(errorBody).toHaveProperty('message')
-			expect(errorBody.message).toBe('Unknown Server Error')
-		})
-
-		test('Deve retornar um objeto de resposta de erro ao não enviar o body', async () => {
-			const response = await handler({})
-
-			expect(response).toHaveProperty('isBase64Encoded')
-			expect(typeof response.isBase64Encoded).toBe('boolean')
-			expect(response).toHaveProperty('headers')
-			expect(typeof response.headers).toBe('object')
-			expect(response).toHaveProperty('statusCode')
-			expect(typeof response.statusCode).toBe('number')
-			expect(response.statusCode).toBe(400)
-			expect(response).toHaveProperty('body')
-			expect(typeof response.body).toBe('string')
-			const errorBody = JSON.parse(response.body)
-			expect(errorBody).toHaveProperty('status')
-			expect(errorBody.status).toBe('error')
-			expect(errorBody).toHaveProperty('message')
-			expect(errorBody.message).toBe('The request Records is required')
-		})
-
-		it('Deve logar um erro', async () => {
-			const spyLogger = jest.spyOn(logger, 'error')
-
-			jest
-				.spyOn(abandonedQuotationController, 'process')
-				.mockImplementationOnce(() => {
-					throw new Error()
-				})
-
-			await handler(VALID_INPUT_DATA)
-
-			expect(spyLogger).toHaveBeenCalled()
-			expect(spyLogger).toHaveBeenCalledTimes(1)
-		})
+	test('acknowledges an empty batch without invoking the controller', async () => {
+		await expect(handler({ Records: [] })).resolves.toEqual({ batchItemFailures: [] })
+		expect(abandonedQuotationController.process).not.toHaveBeenCalled()
 	})
+
+	test('processes records sequentially and returns the stream success contract', async () => {
+		const first = makeRecord('90071992547409930001')
+		const second = makeRecord('90071992547409930002')
+		const completed = []
+		abandonedQuotationController.process.mockImplementation(async ({ Records }) => {
+			if (Records[0] === second) expect(completed).toEqual([first])
+			await Promise.resolve()
+			completed.push(Records[0])
+		})
+
+		const response = await handler({ Records: [first, second], source: 'synthetic' })
+
+		expect(response).toEqual({ batchItemFailures: [] })
+		expect(completed).toEqual([first, second])
+		expect(abandonedQuotationController.process.mock.calls).toEqual([
+			[{ Records: [first], source: 'synthetic' }],
+			[{ Records: [second], source: 'synthetic' }],
+		])
+		expect(logger.error).not.toHaveBeenCalled()
+	})
+
+	test('returns the failed SequenceNumber and leaves the remaining records for retry', async () => {
+		const records = [makeRecord('101'), makeRecord('102'), makeRecord('103')]
+		abandonedQuotationController.process
+			.mockResolvedValueOnce([{ updated: true }])
+			.mockRejectedValueOnce(new Error('synthetic API failure'))
+
+		await expect(handler({ Records: records })).resolves.toEqual({
+			batchItemFailures: [{ itemIdentifier: '102' }],
+		})
+		expect(abandonedQuotationController.process).toHaveBeenCalledTimes(2)
+		expect(logger.error).toHaveBeenCalledWith(
+			{ eventId: 'event-102', sequenceNumber: '102', errorName: 'Error' },
+			'Failed to process abandoned quotation stream record'
+		)
+	})
+
+	test('reports a synchronous controller failure using SequenceNumber instead of eventID', async () => {
+		abandonedQuotationController.process.mockImplementation(() => {
+			throw new Error('synchronous failure')
+		})
+
+		await expect(handler({ Records: [makeRecord('201'), makeRecord('202')] }))
+			.resolves.toEqual({ batchItemFailures: [{ itemIdentifier: '201' }] })
+		expect(abandonedQuotationController.process).toHaveBeenCalledTimes(1)
+	})
+
+	test('handles a non-Error rejection without swallowing the failed checkpoint', async () => {
+		abandonedQuotationController.process.mockRejectedValue(null)
+
+		await expect(handler({ Records: [makeRecord('301')] })).resolves.toEqual({
+			batchItemFailures: [{ itemIdentifier: '301' }],
+		})
+		expect(logger.error.mock.calls[0][0].errorName).toBe('Error')
+	})
+
+	test.each([undefined, null, {}, { Records: null }, { Records: {} }, { Records: 'invalid' }])(
+		'rejects malformed batches instead of returning an HTTP response: %p',
+		async (event) => {
+			await expect(handler(event)).rejects.toBeInstanceOf(ValidationError)
+			expect(abandonedQuotationController.process).not.toHaveBeenCalled()
+		}
+	)
+
+	test.each([null, undefined, '', ' ', 123])(
+		'rejects an invalid checkpoint before performing any side effects: %p',
+		async (sequenceNumber) => {
+			const records = [makeRecord('401'), makeRecord(sequenceNumber)]
+			await expect(handler({ Records: records })).rejects.toThrow('SequenceNumber')
+			expect(abandonedQuotationController.process).not.toHaveBeenCalled()
+		}
+	)
+
+	test.each([null, undefined, {}, { dynamodb: null }])(
+		'rejects records without a DynamoDB checkpoint: %p',
+		async (record) => {
+			await expect(handler({ Records: [record] })).rejects.toThrow('SequenceNumber')
+			expect(abandonedQuotationController.process).not.toHaveBeenCalled()
+		}
+	)
+
+	test.each([undefined, null, 'invalid', []])(
+		'reports a missing or invalid OldImage as an item failure: %p',
+		async (oldImage) => {
+			const record = makeRecord('501')
+			record.dynamodb.OldImage = oldImage
+			await expect(handler({ Records: [record, makeRecord('502')] })).resolves.toEqual({
+				batchItemFailures: [{ itemIdentifier: '501' }],
+			})
+			expect(abandonedQuotationController.process).not.toHaveBeenCalled()
+		}
+	)
 })

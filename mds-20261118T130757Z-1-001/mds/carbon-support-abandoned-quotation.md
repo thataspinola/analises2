@@ -1,5 +1,9 @@
 # carbon-support-abandoned-quotation
 
+> **Atualização de código — item 1, 18/11/2026:** o contrato de falha foi corrigido nas duas cópias de `app-abandoned-quotation` (`carbon-support-create-lead` e `carbon-support-abandoned-quotation`). Os handlers agora devolvem `batchItemFailures` com o `SequenceNumber`, interrompendo o lote na primeira falha. Validação: 38 testes por cópia; handler com 100% de cobertura. Validação AWS pendente. [Detalhes e limitações](../../docs/fixes/01-abandoned-quotation-stream.md).
+>
+> O texto abaixo preserva o diagnóstico anterior à correção; os PDFs desta auditoria são históricos.
+
 > **Leitura rápida**
 >
 > |                          |                                                                        |

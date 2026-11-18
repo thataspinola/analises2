@@ -1,5 +1,7 @@
 # Resumo da auditoria de lambdas
 
+> **Item 1 corrigido no código (18/11/2026):** abandono de cotação passa a reportar o checkpoint com falha ao DynamoDB Stream. As linhas da tabela abaixo são o diagnóstico original. [Validação e limitações](../../docs/fixes/01-abandoned-quotation-stream.md). Demais itens ainda pendentes.
+
 > Nenhuma lambda desta lista está ao mesmo tempo no API Gateway e numa fila SQS.
 > O anti-padrão do Tech Lead **não apareceu** nos nomes que existem no repositório.
 > Há nomes da lista que **não são lambda** aqui, timeouts de fila apertados, e retornos que não cumprem o contrato (HTTP ou `batchItemFailures`).
