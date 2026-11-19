@@ -101,7 +101,6 @@ data "aws_iam_policy_document" "queue_dead_letter_policy_doc" {
 
 data "aws_iam_policy_document" "dlq_policy_doc" {
   source_policy_documents = [
-    data.aws_iam_policy_document.queue_fedusers_policy_doc.json,
     data.aws_iam_policy_document.queue_dead_letter_policy_doc.json,
   ]
 }
@@ -110,3 +109,4 @@ resource "aws_sqs_queue_policy" "dlq_policy" {
   queue_url = var.dlq_inepection_fail_id
   policy    = data.aws_iam_policy_document.dlq_policy_doc.json
 }
+
