@@ -26,10 +26,10 @@ exports.badRequestError = (message) => {
 		Status : "FAILED",
 		statusCode: 400,
 		headers: { 'Content-Type': 'application/json' },
-		body: {
+		body: JSON.stringify({
 			status: 'error',
 			message: message || 'O corpo da requisição fornecido é inválido',
-		},
+		}),
 	}
 }
 
