@@ -13,6 +13,7 @@ module.exports.handler = async (event) => {
 					service.logger.info(
 						`[NÃO REALIZAR A CHAMADA PARA ELEGIBILITY][TOGGLE ELEGIBILITY] = ${parsedInput.eligibility}`
 					)
+					resolve()
 				} else {
 					service.logger.info(
 						`[REALIZAR A CHAMADA PARA ELEGIBILITY][TOGGLE ELEGIBILITY] = ${parsedInput.eligibility}`

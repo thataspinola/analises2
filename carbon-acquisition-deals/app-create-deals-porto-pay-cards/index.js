@@ -13,6 +13,7 @@ module.exports.handler = async (event) => {
 					service.logger.info(
 						`[NÃO REALIZAR A CHAMADA PARA CREDIT CARDS][TOGGLE CREDIT CARDS] = ${parsedInput.creditCards}`
 					)
+					resolve()
 				} else {
 					service.logger.info(
 						`[REALIZAR A CHAMADA PARA CREDIT CARDS][TOGGLE CREDIT CARDS] = ${parsedInput.creditCards}`
