@@ -1,5 +1,8 @@
 # Item 4 — Privacidade dos logs nos fluxos de Vida
 
+> Atualização de 19/11/2026: os testes deste registro foram consolidados em `app/test`, no [item 7D](07d-life-quotation-vitest.md). Os pacotes `validation/http` e `validation/logging` foram removidos. Os resultados anteriores abaixo são históricos.
+
+
 ## Escopo deste miniprojeto
 
 `carbon-acquisition-life-quotation`, incluindo sua aplicação e API Gateway. Esta pasta é independente dos demais projetos.
@@ -31,7 +34,7 @@ válidos e status técnico. Os novos logs de erro usam a mensagem fixa
 `Operation failed`; o detalhe operacional fica nos metadados estruturados.
 
 Cada ZIP Lambda carrega sua própria cópia do helper, evitando imports fora do
-artefato. Cada miniprojeto possui sua própria suíte em `validation/logging`, com dependências e lockfile locais.
+artefato. Na correção original, cada miniprojeto recebeu sua própria suíte em `validation/logging`. Neste projeto ela foi consolidada em `app/test` pelo item 7D, com dependências e lockfile locais.
 Nenhuma dependência de produção foi adicionada ou atualizada.
 
 ## Cuidados de implementação
@@ -97,9 +100,9 @@ resposta e contratos HTTP seguem o tratamento existente, a revisar no item 6.
 A partir desta pasta de miniprojeto:
 
 ```bash
-cd validation/logging
+cd app
 npm ci
 npm test
 ```
 
-Os caminhos dos fontes e da infraestrutura são resolvidos a partir desta pasta, sem ler projetos vizinhos. O teste específico do fluxo foi mantido junto aos casos comuns de privacidade. Nesta reorganização, a execução ficou pendente por indisponibilidade do executor; não houve nova certificação de testes.
+Os caminhos dos fontes e da infraestrutura são resolvidos dentro deste miniprojeto, sem ler projetos vizinhos. A pendência histórica de execução foi retomada no item 7D, que registra a validação da suíte consolidada.
