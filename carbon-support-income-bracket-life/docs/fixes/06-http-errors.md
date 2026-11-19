@@ -1,5 +1,8 @@
 # Item 6 — Erros HTTP na consulta de faixa de renda
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 > Atualização de 19/11/2026: os casos HTTP foram integrados à suíte da aplicação no item 7C. O pacote validation/http foi removido. Consulte [comandos e evidências atuais](07c-income-bracket-vitest.md).
 
 ## Comportamento corrigido
@@ -32,11 +35,7 @@ Node 24.22.3, Vitest 5.1.1 e Pino 6.4.1 real no pacote privado `validation/http`
 
 A partir desta pasta de miniprojeto:
 
-```bash
-cd app
-npm ci
-npm test
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 Os módulos de handler, controller, API, factory e logger são carregados dos fontes locais. Axios e a layer privada de token são simulados. Na etapa 7C, as verificações foram consolidadas na aplicação com dependências locais, sem acesso a miniprojetos vizinhos. O teste não faz chamadas a serviços reais.
 

@@ -1,5 +1,8 @@
 # Item 3 — Falha de envio ao SQS no workflow de viagem
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Problema
 
 O estado `Fallback SQS Update Lead` era um `Pass` que encerrava o ramo com
@@ -50,10 +53,7 @@ velocityjs 2.1.7, versões registradas no lockfile:
 
 Comandos reproduzíveis na pasta `carbon-acquisition-travel-proposal`:
 
-```bash
-npm ci
-npm test
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 O projeto de validação utiliza apenas dependências de desenvolvimento e é
 marcado como privado. Os testes ficam em `test/*.spec.js`, fora de `src`.

@@ -1,5 +1,8 @@
 # Item 4 — Privacidade dos logs nos fluxos de Vida
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 > Atualização de 19/11/2026: os testes deste registro foram consolidados em `app/test`, no [item 7D](07d-life-quotation-vitest.md). Os pacotes `validation/http` e `validation/logging` foram removidos. Os resultados anteriores abaixo são históricos.
 
 
@@ -99,10 +102,6 @@ resposta e contratos HTTP seguem o tratamento existente, a revisar no item 6.
 
 A partir desta pasta de miniprojeto:
 
-```bash
-cd app
-npm ci
-npm test
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 Os caminhos dos fontes e da infraestrutura são resolvidos dentro deste miniprojeto, sem ler projetos vizinhos. A pendência histórica de execução foi retomada no item 7D, que registra a validação da suíte consolidada.

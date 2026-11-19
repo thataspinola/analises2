@@ -1,24 +1,15 @@
 # Consulta de faixa de renda de Vida
 
-API de suporte que consulta as faixas de renda do produto Vida. A aplicação usa integração HTTP e uma camada privada de token. O handler retorna o contrato proxy de API Gateway.
+Aplicação de suporte à jornada do produto Vida, com fontes em app e infraestrutura em infra. Este miniprojeto é independente das demais pastas.
 
-## Testes
+## Testes existentes
 
-Requisito validado: Node 24.22.3. A partir desta pasta, na VDI com acesso ao Nexus:
+As suítes originais em app/__test__ e a configuração Jest foram restauradas. A criação de novos testes e a migração para Vitest foram retiradas do escopo atual. Os thresholds voltaram aos valores da configuração Jest anterior.
 
-```bash
-cd app
-npm ci
-npm test
-npm run coverage
-```
+A instalação usa as configurações corporativas e a dependência privada @porto-seguro/hub-vendas.carbon-token@2.9.2. Na VDI, execute a instalação conforme o manifesto/lockfile existente e utilize os scripts originais de teste. A suíte restaurada não foi certificada nesta revisão e pode conter expectativas anteriores às correções de produção.
 
-Vitest é o único runner da aplicação. Suítes em app/test/*.spec.mjs e subpastas. Gates de cobertura: 95% em statements, branches, funções e linhas.
+## Execução manual
 
-A dependência privada de token permanece no manifesto. Não há garantia de instalação completa fora da VDI. Os testes simulam Axios/token e não chamam AWS ou APIs corporativas.
+O script dev utiliza __test__/utils/localRunner.js, no caminho original dentro de app. Esse modo pode acessar serviços reais e depende da conectividade e das credenciais do ambiente autorizado.
 
-npm run tdd executa watch. npm run dev, a partir de app, é o modo manual de integração e pode chamar serviços reais.
-
-[Detalhes dos testes e limites](docs/fixes/07c-income-bracket-vitest.md).
-
-[Correção do contrato HTTP](docs/fixes/06-http-errors.md).
+As correções de tratamento HTTP e proteção de logs permanecem. Consulte os registros em docs/fixes para comportamento, evidências históricas e validações pendentes.

@@ -1,5 +1,8 @@
 # Item 1 — Falhas no consumidor de abandono de cotação
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Comportamento corrigido
 
 O consumidor de DynamoDB Stream devolvia uma resposta HTTP mesmo quando a
@@ -55,11 +58,7 @@ A migração de testes permanece no lote próprio de padronização.
 
 Na pasta `app-abandoned-quotation` de cada uma das duas cópias:
 
-```bash
-npm ci
-npm test -- --runInBand
-npm run coverage -- --runInBand --collectCoverageFrom=index.js
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 O último comando mede somente o handler alterado; não certifica a cobertura
 global da aplicação. A coleta global local identificou 75% de funções devido

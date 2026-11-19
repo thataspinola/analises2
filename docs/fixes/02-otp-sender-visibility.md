@@ -1,5 +1,8 @@
 # Item 2 — Visibilidade da fila de envio de OTP
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Correção
 
 A fila `carbon-auth-otp-send-sms-requests`, consumida por `carbon-otp-sender`,
