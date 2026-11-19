@@ -12,7 +12,8 @@ function handleEmailApiError(error) {
 	)
 
 	service.logger.error(
-		`Error invoking EmailNotification API: ${errorDetails.message}`
+		{ operation: 'send_notification' },
+		'Falha ao invocar a API de notificação de e-mail'
 	)
 	throw externalApiError
 }
@@ -37,3 +38,4 @@ exports.invoke = async (payload) => {
 		handleEmailApiError(error)
 	}
 }
+

@@ -1,15 +1,16 @@
 const controller = require('./src/controller')
-global.logger = require('./config/logger')
+const logger = require('./config/logger')
 
-const lambdaHandler = async (event) => {
+const lambdaHandler = async (event, context) => {
 	const recordPromises = event.Records.map(async (record, index) => {
 		return new Promise((resolve, reject) => {
 			try {
 				const parsedInput = JSON.parse(record.body)
-				logger.info(parsedInput, 'EVENTO RECEBIDO')
-				controller.inspection.process(parsedInput).then(resolve).catch(reject)
+				const logContext = { awsRequestId: context?.awsRequestId, messageId: record.messageId }
+				logger.info(logContext, 'Mensagem de vistoria recebida')
+				controller.inspection.process(parsedInput, logContext).then(resolve).catch(reject)
 			} catch (error) {
-				logger.error(`Error to parse input message: ${record.body}`)
+				logger.error({ awsRequestId: context?.awsRequestId, messageId: record.messageId, operation: 'parse_message' }, 'Falha ao interpretar mensagem de vistoria')
 				reject(error)
 			}
 		})
@@ -19,8 +20,13 @@ const lambdaHandler = async (event) => {
 
 	const batchItemFailures = []
 	for (const [idx, record] of Object.entries(event.Records)) {
-		const { status, reason } = response[idx]
-		if (status === 'fulfilled') continue
+		const { status } = response[idx]
+		const logContext = { awsRequestId: context?.awsRequestId, messageId: record.messageId }
+		if (status === 'fulfilled') {
+			logger.info(logContext, 'Processamento da vistoria concluído')
+			continue
+		}
+		logger.error(logContext, 'Mensagem de vistoria será reprocessada')
 
 		batchItemFailures.push({
 			itemIdentifier: record.messageId,
@@ -33,3 +39,4 @@ const lambdaHandler = async (event) => {
 }
 
 module.exports.handler = lambdaHandler
+
