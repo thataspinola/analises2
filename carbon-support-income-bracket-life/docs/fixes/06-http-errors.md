@@ -1,5 +1,7 @@
 # Item 6 — Erros HTTP na consulta de faixa de renda
 
+> Atualização de 19/11/2026: os casos HTTP foram integrados à suíte da aplicação no item 7C. O pacote validation/http foi removido. Consulte [comandos e evidências atuais](07c-income-bracket-vitest.md).
+
 ## Comportamento corrigido
 
 O handler GET não capturava falhas e o controller dependia de logger global para registrar uma exceção com detalhes upstream. Isso podia falhar novamente com ReferenceError quando o controller era carregado isoladamente.
@@ -17,7 +19,7 @@ O GET continua sem parâmetros obrigatórios. Não foram introduzidas regras de 
 
 ## Testes — 18/11/2026
 
-Node 24.22.3, Vitest 5.1.1 e Pino 6.4.1 real no pacote privado `validation/http`:
+Node 24.22.3, Vitest 5.1.1 e Pino 6.4.1 real no pacote privado `validation/http` usado à época:
 
 - `npm ci --ignore-scripts` com registry público: passou.
 - **16 testes HTTP passaram**.
@@ -31,12 +33,12 @@ Node 24.22.3, Vitest 5.1.1 e Pino 6.4.1 real no pacote privado `validation/http`
 A partir desta pasta de miniprojeto:
 
 ```bash
-cd validation/http
+cd app
 npm ci
 npm test
 ```
 
-Os módulos de handler, controller, API, factory e logger são carregados dos fontes locais. Axios e a layer privada de token são simulados. Cada pacote possui suas próprias dependências e lockfile, sem depender de pastas vizinhas. O teste não faz chamadas a serviços reais.
+Os módulos de handler, controller, API, factory e logger são carregados dos fontes locais. Axios e a layer privada de token são simulados. Na etapa 7C, as verificações foram consolidadas na aplicação com dependências locais, sem acesso a miniprojetos vizinhos. O teste não faz chamadas a serviços reais.
 
 ## Limites e validação corporativa
 
