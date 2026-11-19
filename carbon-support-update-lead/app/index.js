@@ -2,17 +2,17 @@ const controller = require('./src/controller')
 const error = require('./src/error')
 const service = require('./src/service')
 
-module.exports.handler = async (event) => {
+module.exports.handler = async (event, context) => {
 	if(event.hasOwnProperty("Records")){
-		service.logger.info(event, `Sqs`)
-		return await consumerSqs(event)
+		service.logger.info({ awsRequestId: context?.awsRequestId, source: 'sqs' }, 'Início do processamento de atualização de lead')
+		return await consumerSqs(event, context?.awsRequestId)
 	}
 
-	service.logger.info(event, `Gateway`)
-	return await gatewayMessageProcessor(event)
+	service.logger.info({ awsRequestId: context?.awsRequestId, source: 'gateway' }, 'Início do processamento de atualização de lead')
+	return await gatewayMessageProcessor(event, context?.awsRequestId)
 }
 
-async function gatewayMessageProcessor(event){
+async function gatewayMessageProcessor(event, awsRequestId){
 	let responseBody = null
 	let responseStatusCode = null
 	try {
@@ -25,8 +25,7 @@ async function gatewayMessageProcessor(event){
 			const parsedInput = JSON.parse(event.body)
 			parsedInputFormData = parsedInput
 		} catch (err) {
-			service.logger.error(`Body JSON parse error: ${err.message}`)
-			service.logger.info(`data: ${event.body}`)
+			service.logger.error({ awsRequestId, operation: 'parse_gateway_body' }, 'Falha ao interpretar corpo JSON')
 			throw err
 		}
 
@@ -36,7 +35,8 @@ async function gatewayMessageProcessor(event){
 		responseStatusCode = requestData.statusCode
 	} catch (error) {
 		service.logger.error(
-			`ERROR: ${error.name} |  MESSAGE: ${error.message}  | STACK: ${error.stack}`
+			{ awsRequestId, operation: 'gateway_update_lead', errorType: error.name === 'ValidationError' ? 'validation' : 'internal' },
+			'Falha no processamento de atualização de lead'
 		)
 		responseBody = JSON.stringify({
 			status: 'error',
@@ -54,7 +54,7 @@ async function gatewayMessageProcessor(event){
 	return response
 }
 
-async function consumerSqs(event) {
+async function consumerSqs(event, awsRequestId) {
 	const recordPromises = event.Records.map(async (record, index) => {
 		return new Promise((resolve, reject) => {
 			try {
@@ -67,7 +67,7 @@ async function consumerSqs(event) {
 				
 				
 			} catch (error) {
-				service.logger.error(`Error to parse input message: ${record.body}`)
+				service.logger.error({ awsRequestId, messageId: record.messageId, operation: 'parse_sqs_body' }, 'Falha ao interpretar mensagem SQS')
 				reject(error)
 			}
 		})
@@ -77,8 +77,13 @@ async function consumerSqs(event) {
 
 	const batchItemFailures = []
 	for (const [idx, record] of Object.entries(event.Records)) {
-		const { status, reason } = responseSqs[idx]
-		if (status === 'fulfilled') continue
+		const { status } = responseSqs[idx]
+		if (status === 'fulfilled') {
+			service.logger.info({ awsRequestId, messageId: record.messageId, operation: 'sqs_update_lead' }, 'Processamento da mensagem concluído')
+			continue
+		}
+
+		service.logger.error({ awsRequestId, messageId: record.messageId, operation: 'sqs_update_lead' }, 'Falha no processamento da mensagem')
 
 		batchItemFailures.push({
 			itemIdentifier: record.messageId,
