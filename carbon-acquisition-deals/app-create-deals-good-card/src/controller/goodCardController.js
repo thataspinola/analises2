@@ -25,14 +25,8 @@ exports.process = async (inputData) => {
 
 		return factory.response.success('Success')
 	} catch (error) {
-		service.logger.error(error.message)
-
-		if (error.name == 'ValidationError') {
-			return factory.response.badRequestError(
-				'Não foi possível processar a requisição, por favor revise os dados'
-			)
-		}
-		return factory.response.error('Erro interno')
+		service.logger.error('Failed to process good card deal')
+		throw error
 	}
 }
 

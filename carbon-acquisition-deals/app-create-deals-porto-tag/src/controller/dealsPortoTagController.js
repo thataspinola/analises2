@@ -25,9 +25,8 @@ exports.process = async (inputData) => {
 
 		return factory.response.success('Success')
 	} catch (error) {
-		service.logger.error(error.message)
-
-		return factory.response.error(error.message, error.code)
+		service.logger.error('Failed to process Porto Tag deal')
+		throw error
 	}
 }
 

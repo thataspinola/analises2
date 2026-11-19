@@ -15,13 +15,8 @@ exports.saveDealsData = async (inputData) => {
 
 		return 'The deals data was saved with success.'
 	} catch (error) {
-		service.logger.error(`Erro identificado: ${error.message}`)
-
-		if (error.name == 'ValidationError') {
-			return factory.response.error(error.message, 400)
-		}
-
-		return factory.response.error('Erro interno')
+		service.logger.error('Failed to save deals data')
+		throw error
 	}
 }
 
