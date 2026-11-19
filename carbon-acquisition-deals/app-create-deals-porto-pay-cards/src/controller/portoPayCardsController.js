@@ -25,6 +25,9 @@ exports.process = async (inputData) => {
 			SENSEDIA_TOKEN
 		)
 
+		if (response === null) {
+			return factory.response.success('Success')
+		}
 
 		const cards = service.filterCards.filter(response)
 

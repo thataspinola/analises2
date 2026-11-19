@@ -14,7 +14,7 @@ A mensagem fixa evita acrescentar payload, stack ou mensagem livre de exceção 
 
 - Alterados seis arquivos de produção e este documento, somente dentro de carbon-acquisition-deals.
 - Mantidos os caminhos de sucesso, os payloads enviados, as regras de filtragem e as verificações que evitam gravar quando não há dados.
-- As APIs continuam com o tratamento existente de 404 como ausência de dados. O defeito específico de filtro com null em Porto Pay permanece separado.
+- As APIs continuam com o tratamento existente de 404 como ausência de dados. Em Porto Pay, a resposta null retorna o sucesso existente antes dos filtros, para não transformar ausência de cartões em retry após a correção da propagação.
 - getDealsData e os endpoints HTTP create-deals/find-deals permanecem com o contrato atual.
 - A busca no código versionado encontrou as chamadas de gravação nos cinco consumidores deste miniprojeto. Consumidores externos à base não foram certificados.
 - Não houve alteração de testes, Jest, manifests, lockfiles, handlers, Terraform ou nomes de recursos. Não foram criados testes, cenários, fixtures ou pacotes de validação.
@@ -25,7 +25,7 @@ A propagação de erro de saveDealsData é uma mudança intencional do contrato 
 
 - Revisão dos seis controllers, handlers SQS, APIs de produto, contrato de gravação e mapeamentos de falha parcial.
 - node --check aprovado para os seis arquivos alterados.
-- Revisão do diff: alteração restrita aos catches de falha. Trecho de getDealsData preservado.
+- Revisão do diff: alteração restrita aos catches de falha e ao guard de ausência de cartões em Porto Pay. Trecho de getDealsData preservado.
 - Testes preexistentes e configurações Jest preservados por SHA. Nenhum novo arquivo de teste.
 - A suíte Jest não foi executada. Há expectativas legadas que verificam objeto HTTP em falhas dos controllers e de saveDealsData; elas divergem intencionalmente do tratamento corrigido e precisam de revisão no processo corporativo, mantendo os cenários existentes.
 - Não houve download de pacotes privados, chamadas a APIs/AWS, deploy ou apply.
@@ -41,7 +41,6 @@ A propagação de erro de saveDealsData é uma mudança intencional do contrato 
 ## Itens que seguem separados
 
 - Resolver as Promises que ficam pendentes quando eligibility/creditCards está false.
-- Tratar o resultado null em Porto Pay antes dos filtros.
 - Revisar visibility timeout, idempotência, logs com payloads e rastreamento.
 - Confirmar cobertura e roteamento de alarmes e o processo de recuperação de DLQ.
 
