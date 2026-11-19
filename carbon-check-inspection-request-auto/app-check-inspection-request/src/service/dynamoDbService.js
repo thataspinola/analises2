@@ -45,7 +45,7 @@ exports.deleteItemIfExists = async (inputBody) => {
 		const deleteCommand = new DeleteCommand({
 			TableName: INSPECTION_REQUEST_AUTO_GATHER_SCHEDULE_DB_TABLE_NAME,
 			Key: {
-				HPK: `quotationNumber#${inputBody.quotationNumber}#idTransaction#${inputBody.idTransaction}`,
+				HPK: `orderNumber#${inputBody.quotationNumber}#idTransaction#${inputBody.idTransaction}`,
 				RSK: `${inputBody.inspectionRequestDate}`,
 			},
 		})
