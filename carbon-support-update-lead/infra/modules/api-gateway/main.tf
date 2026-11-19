@@ -87,7 +87,7 @@ resource "aws_api_gateway_integration" "api_gateway_integration" {
   }
 
   request_templates = {
-    "application/json" = "Action=SendMessage&MessageBody=$input.body"
+    "application/json" = "Action=SendMessage&MessageBody=$util.urlEncode($input.body)"
   }
 
   depends_on = [
@@ -168,6 +168,33 @@ resource "aws_api_gateway_method_response" "http4xx" {
     aws_api_gateway_method.api_gateway_method
   ]
 }
+resource "aws_api_gateway_integration_response" "http5xx" {
+  rest_api_id       = aws_api_gateway_rest_api.api_gateway.id
+  resource_id       = aws_api_gateway_resource.api_gateway_resource.id
+  http_method       = aws_api_gateway_method.api_gateway_method.http_method
+  status_code       = aws_api_gateway_method_response.http5xx.status_code
+  selection_pattern = "^5[0-9][0-9]$"
+
+  response_templates = {
+    "application/json" = "{\"message\": \"Erro ao acionar fila do update-lead\"}"
+  }
+
+  depends_on = [
+    aws_api_gateway_integration.api_gateway_integration
+  ]
+}
+
+resource "aws_api_gateway_method_response" "http5xx" {
+  rest_api_id = aws_api_gateway_rest_api.api_gateway.id
+  resource_id = aws_api_gateway_resource.api_gateway_resource.id
+  http_method = aws_api_gateway_method.api_gateway_method.http_method
+  status_code = "500"
+
+  response_models = {
+    "application/json" = "Empty"
+  }
+}
+
 resource "aws_api_gateway_deployment" "api_gateway_deployment" {
   rest_api_id = aws_api_gateway_rest_api.api_gateway.id
 
@@ -183,7 +210,11 @@ resource "aws_api_gateway_deployment" "api_gateway_deployment" {
       var.path_part,
       aws_api_gateway_integration.api_gateway_integration,
       aws_api_gateway_integration_response.http200,
-      aws_api_gateway_method_response.http200
+      aws_api_gateway_method_response.http200,
+      aws_api_gateway_integration_response.http4xx,
+      aws_api_gateway_method_response.http4xx,
+      aws_api_gateway_integration_response.http5xx,
+      aws_api_gateway_method_response.http5xx
     ]))
   }
 
@@ -192,7 +223,10 @@ resource "aws_api_gateway_deployment" "api_gateway_deployment" {
     aws_api_gateway_rest_api_policy.api_gateway_policy,
     aws_api_gateway_resource.api_gateway_resource,
     aws_api_gateway_method.api_gateway_method,
-    aws_api_gateway_integration.api_gateway_integration
+    aws_api_gateway_integration.api_gateway_integration,
+    aws_api_gateway_integration_response.http200,
+    aws_api_gateway_integration_response.http4xx,
+    aws_api_gateway_integration_response.http5xx
   ]
 }
 
