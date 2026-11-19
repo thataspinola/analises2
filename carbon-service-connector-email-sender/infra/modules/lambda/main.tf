@@ -73,9 +73,11 @@ resource "aws_iam_role_policy_attachment" "carbon_lambda_role_vpc_policy_attachm
 # -----------------------------------------------------------------
 
 resource "aws_lambda_event_source_mapping" "lambda_event_source" {
-  event_source_arn = var.email_sender_queue_arn
-  enabled          = true
-  function_name    = aws_lambda_function.carbon_lambda.arn
+  event_source_arn         = var.email_sender_queue_arn
+  enabled                 = true
+  function_name           = aws_lambda_function.carbon_lambda.arn
+  batch_size              = 10
+  function_response_types = ["ReportBatchItemFailures"]
 }
 
 resource "aws_lambda_permission" "carbon_lambda_permission" {
