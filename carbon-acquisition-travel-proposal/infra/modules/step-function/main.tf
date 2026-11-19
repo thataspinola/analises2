@@ -25,7 +25,7 @@ resource "aws_sfn_state_machine" "state_machine" {
 
   logging_configuration {
     log_destination        = "${aws_cloudwatch_log_group.log_group_for_sfn.arn}:*"
-    include_execution_data = true
+    include_execution_data = false
     level                  = var.log_level
   }
 }
