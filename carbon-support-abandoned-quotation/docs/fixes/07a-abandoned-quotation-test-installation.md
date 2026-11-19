@@ -1,5 +1,7 @@
 # Item 7A — Instalação e cobertura do abandono de cotação
 
+> Atualização: esta etapa é histórica. A migração para Vitest desta aplicação foi concluída no item 7B. Consulte [comandos e evidências atuais](07b-abandoned-quotation-vitest.md).
+
 ## Escopo
 
 Correção restrita à aplicação `app-abandoned-quotation` deste miniprojeto. Nenhum arquivo é compartilhado com outro miniprojeto e a aplicação pode executar seus testes sem carregar `app-create-lead`.
@@ -34,23 +36,23 @@ A partir de app-abandoned-quotation, na VDI com acesso ao registry corporativo:
 
 ```bash
 npm ci
-npm test -- --runInBand
-npm run coverage -- --runInBand
+npm test
+npm run coverage
 ```
 
 Para reproduzir exclusivamente com pacotes públicos fora da VDI:
 
 ```bash
 npm ci --ignore-scripts --registry=https://registry.npmjs.org
-npm test -- --runInBand
-npm run coverage -- --runInBand
+npm test
+npm run coverage
 ```
 
 O comando corporativo padrão ainda precisa ser executado na VDI para confirmar disponibilidade no Nexus. A validação foi em Linux; a retirada do export elimina essa dependência de Bash, mas não representa teste efetivo em Windows.
 
 ## Pendências do item 7
 
-Jest é mantido como **legado temporário** neste lote de instalação. A migração para Vitest, a padronização da pasta test e das suítes e a expansão aos demais pacotes do miniprojeto continuam pendentes. Esta etapa não encerra o item 7 nem certifica a cobertura dos outros projetos.
+Jest era o runner legado durante esta etapa histórica. Ele foi removido desta aplicação no item 7B, com testes em test e gates preservados. A expansão aos demais pacotes e as validações corporativas continuam pendentes. Esta etapa não encerra o item 7 em todos os projetos.
 
 Não foram executados chamadas corporativas/AWS, deploy, testes de carga ou ponta a ponta. A cobertura mede o escopo já configurado no Jest, com as exclusões anteriores preservadas. Ela não comprova todos os comportamentos em ambiente real nem sanitização global dos logs.
 
