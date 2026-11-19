@@ -4,7 +4,8 @@
 
 resource "aws_sqs_queue" "queue" {
   name                       = var.project_name
-  visibility_timeout_seconds = 120
+  # Janela de lote atual: 0 s. Somar sua duração se ela for configurada.
+  visibility_timeout_seconds = max(120, 6 * var.lambda_timeout)
 
   redrive_policy = jsonencode({
     deadLetterTargetArn = var.request_fail_sqs_arn
@@ -58,3 +59,4 @@ resource "aws_lambda_event_source_mapping" "lambda_event_source" {
     aws_sqs_queue.queue
   ]
 }
+

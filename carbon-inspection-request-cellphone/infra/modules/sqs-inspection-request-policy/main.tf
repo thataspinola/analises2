@@ -105,7 +105,6 @@ data "aws_iam_policy_document" "queue_dead_letter_policy_doc" {
 
 data "aws_iam_policy_document" "dlq_policy_doc" {
   source_policy_documents = [
-    data.aws_iam_policy_document.queue_fedusers_policy_doc.json,
     data.aws_iam_policy_document.queue_dead_letter_policy_doc.json,
   ]
 }
@@ -134,3 +133,4 @@ resource "aws_cloudwatch_metric_alarm" "dlq_alarm" {
     "QueueName" = "${var.project_name}-dead-letter"
   }
 }
+

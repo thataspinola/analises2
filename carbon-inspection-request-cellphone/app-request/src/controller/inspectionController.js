@@ -2,62 +2,61 @@ const api = require('../api')
 const factory = require('../factory')
 const CONSTANTS = require('../property')
 const service = require('../service')
+const logger = require('../../config/logger')
 
 const token = require(CONSTANTS.TOKEN_LIBRARY_LOCATION)
 const paymentDataLayer = require(CONSTANTS.PAYMENT_DATA_LIBRARY_LOCATION)
 
-exports.process = async (inputData) => {
+exports.process = async (inputData, logContext = {}) => {
+	const logData = { awsRequestId: logContext.awsRequestId, messageId: logContext.messageId }
+	let operation = 'validate_input'
 	try {
 		service.validation.inputData(inputData, CONSTANTS.QUEUE_MESSAGE_SCHEMA)
+		operation = 'build_payload'
 		const proposalPayload = factory.proposalPayload.build(inputData.integrationData)
+		operation = 'get_token'
 		const muleSoftToken = await token.getMulesoftTokenHubInternal()
+		operation = 'get_certificates'
 		const portoCertificates = await token.getPortoCertificates()
 
 		logger.info(
-			{ input: { ...proposalPayload } },
+			{ ...logData, operation: 'send_proposal' },
 			'informação enviada para o produto'
 		)
+		operation = 'send_proposal'
 		const productResponse = await api.proposal.integration(
 			proposalPayload,
 			muleSoftToken,
 			portoCertificates
 		)
 
+		operation = 'validate_product_response'
 		service.validation.productData(productResponse)
 		inputData.idTransaction = `${productResponse?.numeroProposta}`
+		operation = 'save_payment_data'
 		await paymentDataLayer.savePaymentData(inputData)
-
-		const logData = {
-			orderNumber: inputData.orderNumber,
-			externalId: inputData.externalId,
-			idTransaction: inputData.idTransaction,
-		}
 		logger.info(
 			logData,
 			'Registro das informações de vistoria efetuado com sucesso.'
 		)
 
-		await sendDataToGoogleAnalytics(inputData, productResponse.numeroProposta)
+		await sendDataToGoogleAnalytics(inputData, productResponse.numeroProposta, logData)
 
 		return factory.response.success('Success')
 	} catch (error) {
-		const logData = {
-			orderNumber: inputData.orderNumber,
-			externalId: inputData.externalId,
-		}
-
 		logger.error(
-			logData,
-			`Falha no fluxo de envio da proposta - ${error.message} - stack: ${error.stack}`
+			{ ...logData, operation },
+			'Falha no fluxo de envio da proposta'
 		)
 		throw error
 	}
 }
 
-async function sendDataToGoogleAnalytics(inputData, proposalId) {
+async function sendDataToGoogleAnalytics(inputData, proposalId, logData) {
 	try {
 		if (!inputData.integrationData.analytics) {
 			logger.warn(
+				{ ...logData, operation: 'send_analytics' },
 				'Não foi repassado dados de tagueamento para ser enviado ao google-analytics'
 			)
 			return
@@ -74,13 +73,14 @@ async function sendDataToGoogleAnalytics(inputData, proposalId) {
 		)
 
 		logger.info(
-			message,
+			{ ...logData, operation: 'send_analytics' },
 			'dados de tagueamento enviado para a fila que faz envio para o google-analytics com sucesso'
 		)
 	} catch (error) {
 		logger.error(
-			error,
+			{ ...logData, operation: 'send_analytics' },
 			'erro ao enviar mensagem para a fila que faz envio dos dados de tagueamento para o google-analytics'
 		)
 	}
 }
+

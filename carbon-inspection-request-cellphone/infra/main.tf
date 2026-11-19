@@ -46,7 +46,7 @@ module "lambda-inspection-fail" {
   account_id                                     = var.account_id
   vpc_subnet_ids                                 = var.vpc_subnet_ids
   vpc_security_group_id                          = var.vpc_security_group_id
-  lambda_timeout                                 = var.request_lambda_timeout
+  lambda_timeout                                 = var.fail_lambda_timeout
   lambda_cloudwatch_log_retention                = var.lambda_cloudwatch_log_retention
   NODE_ENV                                       = var.NODE_ENV
   INTERNAL_GTW_EMAIL_NOTIFICATION_URL            = var.INTERNAL_GTW_EMAIL_NOTIFICATION_URL
@@ -65,6 +65,7 @@ module "sqs-inspection-request" {
   source                     = "./modules/sqs-inspection-request"
   project_name               = "${var.project_base_name}-request-cellphone"
   lambda_name                = module.lambda-inspection-request.lambda_name
+  lambda_timeout             = var.request_lambda_timeout
   inspection_ready_sns_arn   = "arn:aws:sns:ca-central-1:${var.account_id}:${var.inspection_ready_sns_name}"
   dlq_message_retention_days = var.dlq_message_retention_days
   request_fail_sqs_arn       = module.sqs-inspection-fail.sqs_arn
@@ -90,6 +91,7 @@ module "sqs-inspection-fail" {
   source                     = "./modules/sqs-inspection-fail"
   project_name               = "${var.project_base_name}-fail-cellphone"
   lambda_name                = module.lambda-inspection-fail.lambda_name
+  lambda_timeout             = var.fail_lambda_timeout
   dlq_message_retention_days = var.dlq_message_retention_days
   depends_on = [
     module.lambda-inspection-fail,
@@ -106,3 +108,4 @@ module "sqs-inspection-fail-policy" {
   sqs_inepection_fail_id     = module.sqs-inspection-fail.sqs_id
   dlq_inepection_fail_id     = module.sqs-inspection-fail.dlq_id
 }
+

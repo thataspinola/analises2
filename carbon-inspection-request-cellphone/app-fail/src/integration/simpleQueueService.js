@@ -1,6 +1,5 @@
 const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs')
 const CONSTANT = require('../property')
-const service = require('../service')
 
 const sqsClient = new SQSClient({ region: CONSTANT.AWS_REGION })
 
@@ -16,3 +15,4 @@ module.exports.send = async (message) => {
 
 	return response.MessageId
 }
+

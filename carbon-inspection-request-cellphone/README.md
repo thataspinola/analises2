@@ -1,41 +1,26 @@
-# Carbon Inspection Request Cellphone
+# Vistoria de celular
 
-## Sumário
+Miniprojeto independente com duas consumidoras SQS. Não importa código de outras pastas de analises2.
 
-1. <a name="DefinitionLink"></a>[Definição](#DefinitionLink)
-2. <a name="DocumentationLink"></a>[Documentações no Confluence](#DocumentationLink)
-3. <a name="StructureLink"></a>[Estrutura do projeto](#StructureLink)
-4. <a name="RequirementsLink"></a>[Requisitos do projeto](#RequirementsLink)
-5. <a name="SetupLink"></a>[Setup local do projeto](#SetupLink)
+## Fluxos
+- app-request: recebe eventos de vistoria com scope phone, valida entrada, cria proposta, grava dados na layer de pagamento e envia Analytics opcional.
+- app-fail: recebe solicitações esgotadas, valida entrada, envia notificação de erro e grava a mensagem na fila final.
 
-## [Definição](#DefinitionLink)
+A fila principal redireciona após6 recebimentos à fila de trabalho de falhas. Esta tem redrive após10 para sua própria DLQ. A fila final escrita pela app-fail é a DLQ do fluxo de solicitações, distinta da DLQ da consumidora de falhas.
 
-Aplicação responsável pelo processamento da solicitação de inspeção.
+## Configuração e entrega
+Cada aplicação tem seu package.json, lock e Jest. As layers privadas de token/pagamento e a instrumentação corporativa exigem ambiente autorizado. A pipeline existente GitLab/Jenkins permanece responsável pelo build/empacotamento/deploy; nenhuma pipeline nova.
+Variáveis relevantes: NODE_ENV, MULE_URL, GOOGLE_ANALYTICS_COLLECT_QUEUE_URL, INTERNAL_GTW_EMAIL_NOTIFICATION_URL e INSPECTION_CELLPHONE_DLQ. Conferir também as variáveis de layers, certificados, rede, retenção e instrumentação no Terraform.
+Não usar os defaults locais de endpoint como ambiente simulado: eles apontam para serviços externos. Não executar localRunner fora da VDI autorizada.
 
-É realizada a notificação para o produto gerar a proposta e enviado uma mensagem para a fila que envia dados de tagueamento para o google analytics
+Na VDI, preparar dependências de cada aplicação com os lockfiles e registry corporativo, sem migrar runner:
+- Em app-request: npm ci e npm test -- --runInBand
+- Em app-fail: npm ci e npm test -- --runInBand
+Os testes existentes foram preservados. A revisão não criou testes e não certificou sua aprovação: execução neste ambiente parou em jest: not found. Há expectativas antigas de log/warn que divergem das correções; registrar o resultado real antes de homologar, sem mudar testes nesta etapa.
 
-Após 3 tentativas com erro, o fluxo de email transacional é ser acionado.
+## Situação da revisão
+Ver [revisão consolidada](docs/fixes/27-cellphone-project-review.md) para commits, achados, alarmes, validação e dependências pendentes.
+Logs novos usam awsRequestId/messageId e etapa; não registrar payloads, documentos pessoais, tokens ou mensagens brutas de dependências.
+Timeout efetivo proposto: solicitações30 s e falhas60 s; visibilidade mínima180/360 s nos quatro tfvars. Redrive, batch10, concorrência5 e respostas parciais preservados.
 
-## [Documentações](#DocumentationLink)
-
-[Documentação](https://portoseguro.atlassian.net/wiki/spaces/HDV/pages/XPTO)
-
-## [Estrutura](#StructureLink)
-
-Este projeto foi construido com NodeJs e Terraform para provisionar a infraestrutura
-
-A pasta app possui o código fonte em NodeJs e na pasta infra os scripts do terraform
-
-## [Requisitos do projeto](#RequirementsLink)
-
-1. node >= v18.0.0;
-2. .aws credentials atualizado com a senha do dia (necessário para acesso ao secretManager);
-
-## [Setup local do projeto](#SetupLink)
-
-1. cd app
-2. npm run install
-3. npm run dev
-
-Quando o projeto inicia ele ja executa a requisição usando o request do arquivo localRunner.js.
-Para testar outros cenários mude os dados da constante mockedLocalData
+Idempotência de proposta/e-mail, orçamento HTTP, IAM corporativo, alarmes e migração de runtime dependem de confirmação/validação na VDI/HML. Revisão de código e merge não equivalem a deploy ou homologação. Permanecemos nesta pasta enquanto essas pendências forem tratadas.

@@ -23,9 +23,22 @@ async function sendMessageToDLQ(inputData) {
 	}
 }
 
-exports.processInspectionFail = async (inputData) => {
-	validateInput(inputData)
-	const payload = factory.emailNotification.createPayload(inputData)
-	await callApi(payload)
-	await sendMessageToDLQ(inputData)
+exports.processInspectionFail = async (inputData, logContext = {}) => {
+	let operation = 'validate_input'
+	try {
+		validateInput(inputData)
+		operation = 'build_notification'
+		const payload = factory.emailNotification.createPayload(inputData)
+		operation = 'send_notification'
+		await callApi(payload)
+		operation = 'send_final_queue'
+		await sendMessageToDLQ(inputData)
+	} catch (error) {
+		service.logger.error(
+			{ awsRequestId: logContext.awsRequestId, messageId: logContext.messageId, operation },
+			'Falha no fluxo de notificação de vistoria'
+		)
+		throw error
+	}
 }
+
