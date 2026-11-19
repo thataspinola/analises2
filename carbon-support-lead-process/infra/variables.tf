@@ -136,7 +136,7 @@ variable "dlq_message_retention_days" {
 
 variable "queue_visibility_timeout_seconds" {
   type        = string
-  description = "queue visibility timeout in seconds"
+  description = "Minimum queue visibility in seconds; effective value is at least six times lambda_timeout"
 }
 
 # ---- LOCALS ----
