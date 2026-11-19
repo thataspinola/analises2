@@ -61,7 +61,7 @@ exports.process = async (inputBody) => {
 					'Retorno da api paymentRegister'
 				)
 
-				dynamoDb.deleteItemIfExists(inputBody)
+				await dynamoDb.deleteItemIfExists(inputBody)
 				break
 			}
 			case (INSPECTION.REFUSED):
