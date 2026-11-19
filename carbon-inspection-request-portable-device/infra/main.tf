@@ -103,6 +103,7 @@ module "sqs-inspection-fail" {
   source                     = "./modules/sqs-inspection-fail"
   project_name               = "${var.project_base_name}-fail-portable-device"
   lambda_name                = module.lambda-inspection-fail.lambda_name
+  lambda_timeout             = var.fail_lambda_timeout
   dlq_message_retention_days = var.dlq_message_retention_days
   depends_on = [
     module.lambda-inspection-fail,
