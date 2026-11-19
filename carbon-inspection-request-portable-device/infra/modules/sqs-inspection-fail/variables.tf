@@ -15,3 +15,8 @@ variable "dlq_message_retention_days" {
   type        = string
   description = "DLQ message rentention in days"
 }
+
+variable "lambda_timeout" {
+  type        = number
+  description = "Timeout em segundos da Lambda consumidora; visibilidade SQS usa seis vezes este valor"
+}
