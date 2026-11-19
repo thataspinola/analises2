@@ -1,9 +1,7 @@
-const CONSTANT = require('../../../../property')
+const factory = require('../../../../factory')
 const service = require('../../../../service')
 
 exports.sendData = async (inputData, idTransaction) => {
-	let currentActivity =
-		'enviar mensagem para a fila que faz envio dos dados de tagueamento para o google-analytics'
 	try {
 		inputData.idTransaction = `${idTransaction}`
 		if (!inputData.integrationData.analytics) {
@@ -13,25 +11,17 @@ exports.sendData = async (inputData, idTransaction) => {
 			return
 		}
 
-		const message = factory.googleAnalytics.getMessage(inputData, proposalId)
+		const message = factory.googleAnalytics.getMessage(inputData, idTransaction)
 
 		await service.sqs.queue.sendMessage(message)
 
 		service.logger.info(
-			message,
-			'Dados de tagueamento enviado para a fila que faz envio para o google-analytics com sucesso'
+			'Dados de tagueamento enviados para a fila do google-analytics com sucesso'
 		)
 	} catch (error) {
-		const currentActivityMessage = `Erro identificado durante a atividade '${currentActivity}': ${error.message}`
-		const errorReporting = {
-			rawError: error,
-			carbonErrorData: {
-				layer: 'googleAnalyticsActivity',
-				currentActivity: currentActivityMessage,
-				errorMessage: error.message,
-			},
-		}
-		service.logger.error(errorReporting, error.message)
-		throw error
+		// A proposta e o pagamento já foram processados; falhar aqui os reenviaria.
+		service.logger.error(
+			'Falha na etapa opcional de envio de tagueamento para a fila do google-analytics'
+		)
 	}
 }
