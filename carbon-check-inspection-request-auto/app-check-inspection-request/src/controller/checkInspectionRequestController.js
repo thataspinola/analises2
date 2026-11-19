@@ -97,7 +97,7 @@ exports.process = async (inputBody) => {
 				inputBody.attemptAfterPaymentError = true
 				await putPaymentRegisterOnDb(inputBody)
 			} else {
-				dlq.sendMessage(inputBody)
+				await dlq.sendMessage(inputBody)
 				logger.info({ inspectionRequestData: { ...inputBody } }, 'Dados enviados para a Dlq')
 			}
 		} else {
@@ -118,7 +118,7 @@ const putPaymentRegisterOnDb = async (inputBody) => {
 	const ttl = factory.ttl.getTtlInMinutes(createdMinsAgo, inputBody.attemptAfterPaymentError)
 
 	if (ttl === null) {
-		dlq.sendMessage(inputBody)
+		await dlq.sendMessage(inputBody)
 		logger.info({ inspectionRequestData: { ...inputBody } }, 'Dados enviados para a Dlq')
 	} else {
 		await dynamoDb.putItem(inputBody, ttl)
