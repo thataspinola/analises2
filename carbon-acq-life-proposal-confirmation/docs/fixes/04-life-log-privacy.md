@@ -1,5 +1,8 @@
 # Item 4 — Privacidade dos logs nos fluxos de Vida
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Escopo deste miniprojeto
 
 `carbon-acq-life-proposal-confirmation`, incluindo sua aplicação e API Gateway. Esta pasta é independente dos demais projetos.
@@ -96,10 +99,6 @@ resposta e contratos HTTP seguem o tratamento existente, a revisar no item 6.
 
 A partir desta pasta de miniprojeto:
 
-```bash
-cd validation/logging
-npm ci
-npm test
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 Os caminhos dos fontes e da infraestrutura são resolvidos a partir desta pasta, sem ler projetos vizinhos. O teste específico do fluxo foi mantido junto aos casos comuns de privacidade. Nesta reorganização, a execução ficou pendente por indisponibilidade do executor; não houve nova certificação de testes.

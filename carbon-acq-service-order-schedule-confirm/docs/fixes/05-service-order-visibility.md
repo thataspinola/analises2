@@ -1,5 +1,8 @@
 # Item 5 — Visibilidade das filas de service-order
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Escopo
 
 Este documento pertence exclusivamente a `carbon-acq-service-order-schedule-confirm`. Código Terraform, testes e documentação necessários para esta correção ficam dentro desta pasta.

@@ -1,5 +1,8 @@
 # Item 6 — Validação HTTP da cotação de Vida
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 > Atualização de 19/11/2026: os testes deste registro foram consolidados em `app/test`, no [item 7D](07d-life-quotation-vitest.md). Os pacotes `validation/http` e `validation/logging` foram removidos. Os resultados anteriores abaixo são históricos.
 
 
@@ -39,11 +42,7 @@ Node 24.22.3 e Vitest 5.1.1, em pacote privado local `validation/http`:
 
 Comandos a partir desta pasta de miniprojeto:
 
-```bash
-cd app
-npm ci
-npm test
-```
+Execução da suíte adicional retirada do escopo atual. Use somente os testes preexistentes do miniprojeto.
 
 A suíte atual inclui privacidade no mesmo comando; não há mais instalação separada.
 

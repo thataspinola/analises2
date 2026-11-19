@@ -4,10 +4,10 @@
   "description": "Função responsável por chamar atualização de lead quando a cotação foi abandonada",
   "main": "index.js",
   "scripts": {
-    "test": "vitest run",
-    "tdd": "vitest",
-    "coverage": "vitest run --coverage",
-    "dev": "node --inspect --watch-path=./ ./scripts/localRunner.cjs"
+    "test": "jest",
+    "tdd": "jest --watch",
+    "coverage": "jest --coverage",
+    "dev": "export NODE_ENV=local && node --inspect --watch-path=./ ./__test__/localRunner"
   },
   "author": "José Frederico Neto",
   "license": "ISC",
@@ -16,14 +16,28 @@
     "pino": "^9.6.0"
   },
   "devDependencies": {
-    "vitest": "5.1.1",
-    "@vitest/coverage-v8": "5.1.1",
-    "mock-require": "3.0.3"
+    "jest": "^30.2.0"
   },
   "engines": {
     "node": ">=22.14.0"
   },
   "overrides": {
-    "picomatch": "^4.0.7"
+    "jest": {
+      "@jest/core": {
+        "jest-haste-map": {
+          "picomatch": "^4.0.7",
+          "anymatch": {
+            "picomatch": "^4.0.7"
+          }
+        }
+      }
+    },
+    "picomatch": "^4.0.7",
+    "chokidar": {
+      "braces": "^3.0.3"
+    },
+    "ajv": {
+      "fast-uri": "^3.1.6"
+    }
   }
 }

@@ -1,5 +1,8 @@
 # Item 4 — Privacidade dos logs nos fluxos de Vida
 
+> Atualização de escopo — 19/11/2026: os testes acrescentados durante estas correções foram removidos. As suítes preexistentes e suas configurações Jest foram restauradas. Os números de testes/cobertura abaixo são históricos e não certificam a suíte atual. As correções de produção descritas neste registro foram preservadas. A validação corporativa continua pendente.
+
+
 ## Escopo deste lote
 
 - `carbon-acquisition-life-quotation`: cotação.
