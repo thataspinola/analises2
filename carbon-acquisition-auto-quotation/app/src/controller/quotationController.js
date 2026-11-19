@@ -52,7 +52,7 @@ exports.process = async (inputRequest) => {
 		const statusCotacao = quotation?.statusCotacao[0]
 
 		if (!statusCotacao) {
-			sendMessageToUpdateLead(inputRequest.auto)
+			await sendMessageToUpdateLead(inputRequest.auto)
 
 			return responseFactory.quotationError()
 		}
