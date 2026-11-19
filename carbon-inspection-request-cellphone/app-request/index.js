@@ -2,6 +2,9 @@ const controller = require('./src/controller')
 const logger = require('./config/logger')
 
 const lambdaHandler = async (event, context) => {
+	if (!Array.isArray(event?.Records)) {
+		throw new Error('Evento SQS inválido: Records deve ser uma lista')
+	}
 	const recordPromises = event.Records.map(async (record, index) => {
 		return new Promise((resolve, reject) => {
 			try {

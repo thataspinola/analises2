@@ -19,7 +19,10 @@ async function processRecord(record, awsRequestId) {
 }
 
 module.exports.handler = async (event, context) => {
-	const recordPromises = event?.Records?.map(record => processRecord(record, context?.awsRequestId)) || []
+	if (!Array.isArray(event?.Records)) {
+		throw new Error('Evento SQS inválido: Records deve ser uma lista')
+	}
+	const recordPromises = event.Records.map(record => processRecord(record, context?.awsRequestId))
 	const responses = await Promise.allSettled(recordPromises)
 	const batchItemFailures = responses.reduce((accumulator, response, index) => {
 		const record = event.Records[index]
