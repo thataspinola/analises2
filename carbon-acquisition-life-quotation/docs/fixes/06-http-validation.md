@@ -1,5 +1,8 @@
 # Item 6 — Validação HTTP da cotação de Vida
 
+> Atualização de 19/11/2026: os testes deste registro foram consolidados em `app/test`, no [item 7D](07d-life-quotation-vitest.md). Os pacotes `validation/http` e `validation/logging` foram removidos. Os resultados anteriores abaixo são históricos.
+
+
 ## Comportamento corrigido
 
 O handler usava `error.ValidationError` sem importar `error`, e o controller convertia falhas de validação em 500. Agora a aplicação retorna:
@@ -37,12 +40,12 @@ Node 24.22.3 e Vitest 5.1.1, em pacote privado local `validation/http`:
 Comandos a partir desta pasta de miniprojeto:
 
 ```bash
-cd validation/http
+cd app
 npm ci
 npm test
 ```
 
-Para privacidade, executar os mesmos comandos em `validation/logging`.
+A suíte atual inclui privacidade no mesmo comando; não há mais instalação separada.
 
 Os testes carregam os módulos CommonJS locais. Token privado e Axios são colaboradores simulados, e o factory de sucesso de cotação é simulado; não certificam precificação, todas as regras de produto ou serviços externos. O schema, a validação, o controller, o factory de erros e o logger são reais. Dependências e lockfile pertencem a esta pasta, sem acesso a miniprojetos vizinhos.
 

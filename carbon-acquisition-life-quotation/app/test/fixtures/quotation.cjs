@@ -31,15 +31,6 @@ exports.RESPONSE_QUOTATION_ERRO = (errorCode) => {
 	}
 }
 
-exports.RESPONSE_QUOTATION_DATA_500 = () => {
-	return {
-		status: 500,
-		data: {
-			message: 'Internal Server Error',
-		},
-	}
-}
-
 exports.RESPONSE_QUOTATION_DATA_SUCCESS = (dateOfBirth) => {
 	return {
 		statusCode: 200,
@@ -1133,13 +1124,6 @@ exports.RESPONSE_CONTROLLER_ERROR = () => {
 		body: {
 			custom: false,
 		}
-	}
-}
-
-exports.RESPONSE_CONTROLLER_SUCESSO = () => {
-	return  {
-		statusCode: 200,
-		body: {}
 	}
 }
 
