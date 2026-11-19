@@ -7,10 +7,10 @@ async function sendMessageToDLQ(message) {
 	try {
 		await service.sqs.queue.sendMessage(message)
 	} catch (error) {
-		service.logger.warn(
-			{ error: true, message: error.message },
-			`Não foi possível enviar o evento para a DLQ de Inspeção de Equipamentos Portáteis, porém o envio para a email-notification ocorreu com sucesso.`
+		service.logger.error(
+			'Falha ao enviar a mensagem para a fila final de vistoria de equipamentos portáteis'
 		)
+		throw error
 	}
 }
 
