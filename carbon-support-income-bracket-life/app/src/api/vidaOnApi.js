@@ -28,7 +28,7 @@ exports.getIncomeBracket = async (tokenBearerString) => {
 		throw new Error(`API unexpected error: ${err.message}`)
 	}
 
-	if (!axiosResponse || !axiosResponse.status) {
+	if (!axiosResponse || !axiosResponse.status || typeof axiosResponse.data === 'undefined') {
 		throw new Error('API unexpected error: Empty or invalid response')
 	}
 
