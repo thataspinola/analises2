@@ -179,7 +179,7 @@ variable "process_lambda_maximum_retry_attempts" {
 
 variable "check_inspection_request_queue_visibility_timeout_seconds" {
   type        = number
-  description = "Inspection status queue visibility timeout in seconds"
+  description = "Minimum inspection queue visibility in seconds; effective value is at least six times lambda_timeout"
 }
 
 variable "check_inspection_request_queue_message_delay_seconds" {

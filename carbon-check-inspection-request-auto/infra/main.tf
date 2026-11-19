@@ -83,7 +83,8 @@ module "check_inspection_request_lambda_event_source" {
 
 module "check_inspection_request_queue" {
   source                                   = "./modules/check-inspection-request-queue"
-  visibility_timeout_seconds               = var.check_inspection_request_queue_visibility_timeout_seconds
+  # Janela de lote atual: 0 s. Se ela mudar, somar seu valor à margem calculada.
+  visibility_timeout_seconds               = max(var.check_inspection_request_queue_visibility_timeout_seconds, 6 * var.lambda_timeout)
   delay_seconds                            = var.check_inspection_request_queue_message_delay_seconds
   dlq_message_retention_days               = var.dlq_message_retention_days
   check_inspection_request_lambda_role_arn = module.check_inspection_request_lambda.lambda_role_arn
