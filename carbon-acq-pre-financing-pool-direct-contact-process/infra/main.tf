@@ -18,7 +18,8 @@ provider "aws" {
 module "contact_requests_queue" {
   source                                           = "./modules/contact-requests-queue"
   dlq_message_retention_days                       = var.dlq_message_retention_days
-  visibility_timeout_seconds                       = var.queue_visibility_timeout_seconds
+  # Janela de lote atual: 0 s. Se ela mudar, somar seu valor à margem calculada.
+  visibility_timeout_seconds                       = max(tonumber(var.queue_visibility_timeout_seconds), 6 * var.lambda_timeout)
   redrive_policy_max_receive_count                 = var.queue_redrive_policy_max_receive_count
   cloudwatch_metric_alarm_evaluation_periods_count = var.dlq_cloudwatch_metric_alarm_evaluation_periods_count
 }
