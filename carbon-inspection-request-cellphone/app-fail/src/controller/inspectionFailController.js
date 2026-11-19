@@ -16,10 +16,10 @@ async function sendMessageToDLQ(inputData) {
 	try {
 		await integration.sqs.send(inputData)
 	} catch (error) {
-		service.logger.warn(
-			{ error: true, message: error.message },
-			`Não foi possível enviar o evento para a DLQ de Inspeção do Celular, porém o envio para a email-notification ocorreu com sucesso.`
+		service.logger.error(
+			'Falha ao enviar a mensagem para a fila final de vistoria de celular'
 		)
+		throw error
 	}
 }
 
