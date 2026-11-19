@@ -152,6 +152,7 @@ module "sender_lambda" {
 
 module "sender_queue" {
   source                     = "./modules/sender-queue"
+  lambda_timeout_seconds     = var.lambda_timeout_sender
   visibility_timeout_seconds = var.sender_queue_visibility_timeout_seconds
   dlq_message_retention_days = var.dlq_message_retention_days
 }

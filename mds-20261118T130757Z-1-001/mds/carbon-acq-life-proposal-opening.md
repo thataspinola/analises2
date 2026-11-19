@@ -1,5 +1,7 @@
 # carbon-acq-life-proposal-opening
 
+> **Atualização de segurança — item 4, 18/11/2026:** nos três fluxos de Vida, logs de payload e erros completos foram substituídos por metadados; Pino recebeu normalização segura de erros e redação defensiva; data tracing de payload foi desativado no API Gateway. Os 54 testes locais de privacidade passaram. [Escopo e limites](../../docs/fixes/04-life-log-privacy.md). O diagnóstico abaixo é histórico e o selo de gatilho não certifica segurança global.
+
 > **Leitura rápida**
 >
 > |                          |                                                                             |

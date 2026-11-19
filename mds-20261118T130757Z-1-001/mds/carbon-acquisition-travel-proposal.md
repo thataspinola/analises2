@@ -1,5 +1,9 @@
 # carbon-acquisition-travel-proposal
 
+> **Atualização de código — item 3, 18/11/2026:** falha no enqueue de update-lead agora termina o workflow em `FAILED`; o mapping de StartSyncExecution devolve HTTP 500 com mensagem sanitizada. Os 22 testes locais de ASL/VTL passaram. Validação do stack e execução real pendentes na VDI/HML. [Detalhes](../../docs/fixes/03-travel-proposal-sqs-failure.md).
+>
+> O diagnóstico abaixo e seus caminhos antigos são históricos. A pasta atual do workflow é `carbon-acquisition-travel-proposal`.
+
 > **Leitura rápida**
 >
 > |                                          |                                                                 |

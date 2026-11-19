@@ -1,3 +1,4 @@
+const logMetadata = require('../../../../../service/logMetadata')
 const CONSTANT = require('./../../../../../property')
 const error = require('./../../../../../error')
 const factory= require('./../../../../../factory')
@@ -38,18 +39,18 @@ exports.Post = async (lifeProposalInputData, token, certificates, traceId, quota
 		)
 
 		const log = {
-            rawError: ex,
+            error: logMetadata.errorSummary(ex),
             carbonErrorData: {
-                identifiers: `TraceId: ${traceId} | QuotationId: ${quotationId}`,
+                traceId: logMetadata.traceId(traceId),
+                quotationId: logMetadata.quotationId(quotationId),
                 layer: 'Integration',
                 currentActivity: `Erro identificado durante a atividade '${currentActivity}'`,
-                errorMessage: externalApiError.message
             }
         }
-        
+
         service.logger.error(
 			log,
-			`${log.carbonErrorData.currentActivity}. Error: ${log.carbonErrorData.errorMessage}`
+			log.carbonErrorData.currentActivity
 		)
 
 		throw externalApiError

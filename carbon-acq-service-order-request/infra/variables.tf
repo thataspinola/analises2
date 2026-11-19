@@ -156,7 +156,7 @@ variable "dynatrace_open_telemetry_enable_integration" {
 }
 
 variable "queue_message_visibility_timeout_seconds" {
-  type        = string
+  type        = number
   description = "AWS SQS queue message visibility timeout in seconds"
 }
 

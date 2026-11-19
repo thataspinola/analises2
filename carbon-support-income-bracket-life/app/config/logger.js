@@ -7,7 +7,7 @@ const logger = pino({
 		bindings() {
 			return {
 				application: packageJson.name.slice(packageJson.name.indexOf('/') + 1),
-				environment: `${CONSTANT.ENV}`,
+				environment: `${CONSTANT.NODE_ENV}`,
 				version: packageJson.version,
 			}
 		},

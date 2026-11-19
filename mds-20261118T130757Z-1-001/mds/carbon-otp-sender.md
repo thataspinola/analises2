@@ -1,5 +1,9 @@
 # carbon-otp-sender
 
+> **Atualização de código — item 2, 18/11/2026:** visibilidade corrigida para 720 s em DEV/HML e 540 s em POC/PRD, preservando os timeouts da Lambda. A fila agora usa uma política que bloqueia valores abaixo de seis vezes o timeout. Os 15 testes nativos da política passaram sem provider AWS; validação do stack e implantação permanecem pendentes na VDI. [Detalhes](../../docs/fixes/02-otp-sender-visibility.md).
+>
+> O diagnóstico abaixo e seus caminhos antigos são históricos. A pasta atual é `carbon-otp-sender`.
+
 > **Leitura rápida**
 >
 > |                          |                                |

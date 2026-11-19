@@ -9,7 +9,7 @@ vpc_security_group_id                    = ["sg-0521d959217b19f68", "sg-0e2b3c6b
 lambda_timeout                           = 30
 lambda_cloudwatch_log_retention          = 60
 queue_dead_letter_message_retention_days = 14
-queue_visibility_timeout_seconds         = 30
+queue_visibility_timeout_seconds         = 180
 lambda_max_memory_size                   = 1024
 
 # Application parameters

@@ -1,3 +1,4 @@
+const logMetadata = require('../service/logMetadata')
 const axios = require('axios')
 const CONSTANT = require('../property')
 const service = require('../service')
@@ -27,7 +28,7 @@ exports.ofertas = async (inputData, token) => {
 			return res
 		})
 		.catch((err) => {
-			service.logger.error('POST-ofertas error: ' + JSON.stringify(err))
+			service.logger.error({ error: logMetadata.errorSummary(err) }, 'Life quotation upstream request failed')
 
 			return { status: err.response.status, data: err?.response?.data }
 		})

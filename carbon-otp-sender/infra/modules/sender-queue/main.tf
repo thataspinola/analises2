@@ -1,10 +1,16 @@
+module "timeout_policy" {
+  source                     = "./timeout-policy"
+  visibility_timeout_seconds = var.visibility_timeout_seconds
+  lambda_timeout_seconds     = var.lambda_timeout_seconds
+}
+
 # ----------------------------------------------------------------
 # SQS QUEUE
 # ----------------------------------------------------------------
 
 resource "aws_sqs_queue" "queue" {
   name                       = "carbon-auth-otp-send-sms-requests"
-  visibility_timeout_seconds = var.visibility_timeout_seconds
+  visibility_timeout_seconds = module.timeout_policy.visibility_timeout_seconds
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.queue_dlq.arn
     maxReceiveCount     = 2

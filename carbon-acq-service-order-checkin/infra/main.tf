@@ -46,7 +46,7 @@ module "queue_dead_letter" {
   source                                           = "./modules/queue-dead-letter"
   queue_name                                       = local.queue_name
   message_retention_days                           = var.queue_dead_letter_message_retention_days
-  message_visibility_timeout_seconds               = var.queue_visibility_timeout_seconds
+  message_visibility_timeout_seconds               = module.queue_timeout_policy.visibility_timeout_seconds
   cloudwatch_metric_alarm_evaluation_periods_count = var.dead_letter_cloudwatch_metric_alarm_evaluation_periods_count
 }
 
@@ -61,7 +61,7 @@ module "queue_dead_letter_policies" {
 module "queue" {
   source                             = "./modules/queue"
   queue_name                         = local.queue_name
-  message_visibility_timeout_seconds = var.queue_visibility_timeout_seconds
+  message_visibility_timeout_seconds = module.queue_timeout_policy.visibility_timeout_seconds
   queue_dead_letter_arn              = module.queue_dead_letter.queue_arn
   depends_on                         = [module.queue_dead_letter]
 }
@@ -96,4 +96,10 @@ module "lambda_event_source" {
     module.lambda,
     module.queue
   ]
+}
+
+module "queue_timeout_policy" {
+  source                     = "./modules/queue-timeout-policy"
+  lambda_timeout_seconds     = var.lambda_timeout
+  visibility_timeout_seconds = var.queue_visibility_timeout_seconds
 }
